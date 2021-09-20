@@ -34,7 +34,7 @@ The following is a list of items (prioritized from most important to least impor
 * Implement an API client library for the API designed above. Ideally, in a different language, of your preference, to the one used for the API
 
 ## Time Spent
-You need to fully complete the challenge. We suggest not spending more than 4-5 hours total.  Please make commits as often as possible so we can see the time you spent and please do not make one commit.  We will evaluate the code and time spent.
+We suggest not spending more than 4-5 hours total.  Please make commits as often as possible so we can see the time you spent and please do not make one commit.  We will evaluate the code and time spent.
  
 What we want to see is how well you handle yourself given the time you spend on the problem, how you think, and how you prioritize when time is sufficient to solve everything.
 
