@@ -1,5 +1,7 @@
 # Minesweeper Game
 
+- [Minesweeper game](https://en.wikipedia.org/wiki/Minesweeper_(video_game))
+
 - [Minesweeper Game](#minesweeper-game)
   - [Components](#components)
     - [Cell](#cell)
@@ -17,21 +19,21 @@
 - state
 - position x
 - position y
-- revealed: boolean
+- revealed: Boolean
 - flagged: Ability to 'flag' a cell with a question mark or red flag
-- content: integer, nil, or bomb
+- content: integer, nil, or mine
 
 **Methods**
 
 - reveal:
-  - shows the number of adjacent bombs if any
-  - if it has no adjacent bombs, it recursively clear all adjacent cells with no mines.
-- count_bombs
-  - iterate through each adjacent/neighbor cell and returns the number of bombs around it
-  - does not count itself
-- find adjacent cells with no bombs:
-  - If you click on a cell having no adjacent mines (in any of the surrounding eight cells) then all the adjacent cells are automatically cleared, thus saving our time.
-  - Flood fill algorithm
+  * shows the number of adjacent mines if any.
+  * if it has no adjacent mines, it recursively clear all adjacent cells with no mines.
+- count_adjacent_mines:
+  * iterate through each adjacent cell and returns the number of mines around it.
+  * does not count itself.
+- find adjacent cells with no mines:
+  * If you click on a cell having no adjacent mines (in any of the surrounding eight cells) then all the adjacent cells are automatically cleared, thus saving our time.
+  * Flood fill algorithm.
 
 ### Board
 
@@ -46,25 +48,27 @@
 
 **Methods**
 
-- setup: fills each cell with: a bomb or the number of adjacent bombs. Blank/nil if it has 0 adjacent bombs.
+- setup: fills each cell with: a mine or the number of adjacent mines. Blank/nil if it has 0 adjacent mines.
 
 ### Game
 
 Holds individual game properties.
 
 - score
-- level: defines game's dificulty. We can use randomness to fill each cell with bomb
-- time:
+- level: defines game's dificulty. We can use randomness to fill each cell with mine
+- time
 - clicks
 
 **Methods**
 
 - start
 - detect when the game is over (e.g. when you click on a mine, all cells are revealed)
+- serialize the game state so it can be saved
 - save game
 - resume game
 - Ability to select the game parameters: number of rows, columns, and mines
 - support multiple users/accounts
+
 
 #### Game levels
 
