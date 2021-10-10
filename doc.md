@@ -16,7 +16,7 @@
 
 **Attributes**
 
-- state
+- mine: (Boolean) whether the cell has a mine.
 - position x
 - position y
 - revealed: Boolean
@@ -41,14 +41,15 @@
 
 **Properties**
 
+- grid
 - width
 - height
 - size: defines the size of the grid (e.g. 20x20 cells)
-- cell_width
 
 **Methods**
 
 - setup: fills each cell with: a mine or the number of adjacent mines. Blank/nil if it has 0 adjacent mines.
+- count mines: returns the number of mines on the board.
 
 ### Game
 

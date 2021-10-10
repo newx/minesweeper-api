@@ -47,6 +47,7 @@
 **Methods**
 
 - setup: fills each cell with: a bomb or the number of adjacent bombs. Blank/nil if it has 0 adjacent bombs.
+- print: for console testing
 
 ### Game
 
