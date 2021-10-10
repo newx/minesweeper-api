@@ -27,6 +27,7 @@ class Board
 
   # Creates a grid of cells.
   def create_grid
+    # TODO: maybe we should initialize the cells already with randomly mines here.
     Array.new(width) { Array.new(height) { Cell.new } }
   end
 end
