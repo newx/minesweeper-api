@@ -34,6 +34,11 @@ class Board
     @grid ||= create_grid
   end
 
+  # Public: Returns a grid cell at the given coordinates.
+  def [](row_index, column_index)
+    grid[row_index][column_index]
+  end
+
   private
 
   # Private: Creates a grid of cells.

@@ -31,4 +31,10 @@ RSpec.describe Board, type: :model do
       expect(subject.grid.flatten.count(&:mine?)).to eq(Board::DEFAULT_MINES_COUNT)
     end
   end
+
+  describe "#[]" do
+    it "returns a grid cell" do
+      expect(subject[0, 0]).to be_a(Cell)
+    end
+  end
 end
