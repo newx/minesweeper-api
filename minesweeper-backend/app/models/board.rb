@@ -1,12 +1,22 @@
 class Board
-  attr_accessor :width, :height
+  attr_accessor :width, :height, :mines, :mines_count
 
   DEFAULT_WIDTH = 10
   DEFAULT_HEIGHT = 10
+  DEFAULT_MINES_COUNT = 10
 
-  def initialize(width: DEFAULT_WIDTH, height: DEFAULT_HEIGHT)
+  def initialize(width: DEFAULT_WIDTH, height: DEFAULT_HEIGHT, mines_count: DEFAULT_MINES_COUNT)
     @width  = width
     @height = height
+    @mines_count = mines_count
+    @mines = []
+
+    setup!
+  end
+
+  def setup!
+    create_grid
+    create_mines
   end
 
   # Public: prints the board as a table of cells to console.
@@ -26,10 +36,26 @@ class Board
 
   private
 
-  # Creates a grid of cells.
+  # Private: Creates a grid of cells.
   def create_grid
-    # TODO: maybe we should initialize the cells already with randomly mines here.
     Array.new(width) { Array.new(height) { Cell.new } }
+  end
+
+  # Private: Creates random mines on the grid. Up to the mines_count limit.
+  def create_mines
+    while mines_count > mines.size
+      cell = random_cell
+      redo if @mines.include?(cell)
+
+      cell.mine = true
+
+      @mines << cell
+    end
+  end
+
+  # Private: Returns a random cell from the grid.
+  def random_cell
+    grid.sample.sample
   end
 
   # Private: Returns true if the given row index is the last row of the grid.

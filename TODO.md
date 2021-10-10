@@ -6,5 +6,6 @@
 - [x] setup Rspec
 - [x] setup rubocop
 - [ ] board
-  - [ ] create a random number of mines at random positions
+  - [x] create a random number of mines at random positions
   - [x] print board to console for testing
+

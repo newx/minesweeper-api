@@ -21,4 +21,14 @@ RSpec.describe Board, type: :model do
       end
     end
   end
+
+  describe "#create_mines" do
+    it "creates mines in the grid" do
+      subject.send(:create_mines)
+
+      puts subject.to_table
+
+      expect(subject.grid.flatten.count(&:mine?)).to eq(Board::DEFAULT_MINES_COUNT)
+    end
+  end
 end
