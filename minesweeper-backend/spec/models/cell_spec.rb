@@ -39,13 +39,13 @@ RSpec.describe Cell, type: :model do
     include_context "board_with_fixed_mines"
 
     it "returns the expected neighbors_count values" do
-      puts board.to_table(force_reveal: true)
+      puts fixed_board.to_table(force_reveal: true)
 
-      rendered_grid = board.to_a(force_reveal: true)
+      rendered_grid = fixed_board.to_a(force_reveal: true)
 
       rendered_grid.each_with_index do |row, row_index|
         row.each_with_index do |cell_value, col_index|
-          cell = board.at(row_index, col_index)
+          cell = fixed_board.at(row_index, col_index)
           cell.revealed = true
 
           expect(cell.neighbors_count_to_s).to eq(cell_value) unless cell.mine?
@@ -54,22 +54,22 @@ RSpec.describe Cell, type: :model do
     end
   end
 
-  describe "#reveal" do
+  describe "#reveal!" do
     include_context "board_with_fixed_mines"
 
     it "recursively reveal neighbors cells with no neighbors mines" do
-      puts board.to_table
+      puts fixed_board.to_table
 
-      cell = board.at(0, 0)
-      cell.reveal
+      cell = fixed_board.at(0, 0)
+      cell.reveal!
 
-      puts board.to_table
-      puts board.to_a.inspect
+      puts fixed_board.to_table
+      puts fixed_board.to_a.inspect
 
-      expect(board.grid[0].map(&:to_s)).to eq([" ", " ", " ", " ", " ", " ", " ", " ", " ", " "])
-      expect(board.grid[1].map(&:to_s)).to eq([" ", "*", "*", "*", "*", "*", " ", " ", " ", " "])
-      expect(board.grid[2].map(&:to_s)).to eq(["*", "*", "*", "*", "*", "*", "*", "*", " ", " "])
-      expect(board.grid[3].map(&:to_s)).to eq(["*", "*", "*", "*", "*", "*", "*", "*", " ", " "])
+      expect(fixed_board.grid[0].map(&:to_s)).to eq([" ", " ", " ", " ", " ", " ", " ", " ", " ", " "])
+      expect(fixed_board.grid[1].map(&:to_s)).to eq([" ", "*", "*", "*", "*", "*", " ", " ", " ", " "])
+      expect(fixed_board.grid[2].map(&:to_s)).to eq(["*", "*", "*", "*", "*", "*", "*", "*", " ", " "])
+      expect(fixed_board.grid[3].map(&:to_s)).to eq(["*", "*", "*", "*", "*", "*", "*", "*", " ", " "])
     end
   end
 

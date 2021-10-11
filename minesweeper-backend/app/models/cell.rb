@@ -41,7 +41,7 @@ class Cell
 
   # Public: Reveals the cell and recursively reveals the neighbors cells that
   # have neighbors_count equal zero.
-  def reveal
+  def reveal!
     return if revealed?
 
     @revealed = true
@@ -50,7 +50,7 @@ class Cell
 
     neighbor_cells.each do |neighbor|
       if !neighbor.revealed? && neighbor.neighbors_count.zero? && !neighbor.mine?
-        neighbor.reveal
+        neighbor.reveal!
       end
     end
   end

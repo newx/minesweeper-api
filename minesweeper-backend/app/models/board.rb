@@ -1,6 +1,8 @@
 class Board
   attr_accessor :width, :height, :mines, :mines_count
 
+  class CellDoesNotExistError < StandardError; end
+
   DEFAULT_WIDTH = 10
   DEFAULT_HEIGHT = 10
   DEFAULT_MINES_COUNT = 10
@@ -53,14 +55,24 @@ class Board
     grid_rendered
   end
 
+  # Public: Reveals a given cell.
+  def reveal(row, col)
+    cell = at(row, col)
+    cell.reveal!
+  end
+
   # Public: Returns a Cell at the given coordinates.
   def at(row, col)
+    raise CellDoesNotExistError unless cell_exists?(row, col)
+
     grid[row][col]
   end
 
   # Public: Returns a grid cell at the given coordinates.
-  def [](row_index, column_index)
-    grid[row_index][column_index]
+  def [](row, col)
+    raise CellDoesNotExistError unless cell_exists?(row, col)
+
+    grid[row][col]
   end
 
   # Public: Returns whether a cell exists or is valid at the given coordinates.
@@ -86,6 +98,11 @@ class Board
     end
 
     @mines = []
+  end
+
+  # Public: Flags all mines on the grid.
+  def flag_all_mines!
+    mines.each(&:flag!)
   end
 
   private

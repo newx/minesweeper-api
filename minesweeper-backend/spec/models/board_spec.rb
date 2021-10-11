@@ -38,4 +38,14 @@ RSpec.describe Board, type: :model do
       expect(subject[0, 0]).to be_a(Cell)
     end
   end
+
+  describe "#at" do
+    it "returns a grid cell" do
+      expect(subject[0, 0]).to be_a(Cell)
+    end
+
+    it "raises if cell does not exists" do
+      expect { subject.at(100, 100) }.to raise_error(Board::CellDoesNotExistError)
+    end
+  end
 end
