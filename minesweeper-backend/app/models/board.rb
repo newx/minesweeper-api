@@ -24,6 +24,11 @@ class Board
     @grid ||= Array.new(width) { Array.new(height) }
   end
 
+  # Public: Returns the count of mines that were correctly flagged.
+  def correct_flags_count
+    mines.count(&:flagged)
+  end
+
   # Public: prints the board as a table of cells to console.
   def to_table(force_reveal: false)
     Terminal::Table.new do |t|

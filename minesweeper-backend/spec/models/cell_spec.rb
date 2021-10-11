@@ -30,7 +30,7 @@ RSpec.describe Cell, type: :model do
 
       it "returns flag value when cell is flagged" do
         subject.flagged = true
-        expect(subject.to_s).to eq("F")
+        expect(subject.to_s).to eq("?")
       end
     end
   end
@@ -70,6 +70,13 @@ RSpec.describe Cell, type: :model do
       expect(board.grid[1].map(&:to_s)).to eq([" ", "*", "*", "*", "*", "*", " ", " ", " ", " "])
       expect(board.grid[2].map(&:to_s)).to eq(["*", "*", "*", "*", "*", "*", "*", "*", " ", " "])
       expect(board.grid[3].map(&:to_s)).to eq(["*", "*", "*", "*", "*", "*", "*", "*", " ", " "])
+    end
+  end
+
+  describe "#flag!" do
+    it "flags the cell" do
+      subject.flag!
+      expect(subject.flagged).to be_truthy
     end
   end
 end

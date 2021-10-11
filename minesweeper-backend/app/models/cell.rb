@@ -55,6 +55,10 @@ class Cell
     end
   end
 
+  def flag!
+    @flagged = true
+  end
+
   # Public: Returns the cell content.
   def to_s(force_reveal: false)
     if revealed || force_reveal
@@ -64,7 +68,7 @@ class Cell
         neighbors_count_to_s
       end
     else
-      flagged ? "F" : "*"
+      flagged ? "?" : "*"
     end
   end
 

@@ -3,6 +3,7 @@
 - [TODO](#todo)
   - [General](#general)
   - [Board](#board)
+  - [Cell](#cell)
   - [Game](#game)
   - [GraphQL API](#graphql-api)
     - [Graphql Mutations](#graphql-mutations)
@@ -19,19 +20,21 @@
 
   - [x] create a random number of mines at random positions
   - [x] print board to console for testing
-  - [ ] check if flagged cells matches all mines
-- [ ] cell
+## Cell
   - [x] find each cell neighbor mines
-  - [ ] flag a cell
-  - [ ] when you reveal a cell having 0 neighbors_count, then all neighbors with 0 neighbors_count are revealed
+  - [x] flag a cell with a question mark
+  - [x] check if flagged cells matches all mines
+  - [x] when you reveal a cell having 0 neighbors_count, then all neighbors with 0 neighbors_count are revealed
 ## Game
 
   - [ ] create Game model (with persistence)
-  - [ ] save game
-  - [ ] resume game
+  - [ ] Ability to select the game parameters: number of rows, columns, and mines
+  - [ ] Detect when game is over
+  - [ ] Ability to start a new game and preserve/resume the old ones
   - [ ] accept game parameters
   - [ ] serialize game state data
-  - [ ] game time elapsed
+  - [ ] Time tracking
+  - [ ] Ability to support multiple users/accounts
 
 ## GraphQL API
 
