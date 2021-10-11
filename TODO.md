@@ -27,11 +27,11 @@
   - [x] when you reveal a cell having 0 neighbors_count, then all neighbors with 0 neighbors_count are revealed
 ## Game
 
-  - [ ] create Game model (with persistence)
-  - [ ] Ability to select the game parameters: number of rows, columns, and mines
+  - [x] create Game model (with persistence)
+  - [x] Ability to select the game parameters: number of rows, columns, and mines
   - [ ] Detect when game is over
+  - [x] Detect if the game was won
   - [ ] Ability to start a new game and preserve/resume the old ones
-  - [ ] accept game parameters
   - [ ] serialize game state data
   - [ ] Time tracking
   - [ ] Ability to support multiple users/accounts

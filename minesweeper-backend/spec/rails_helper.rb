@@ -32,6 +32,7 @@ rescue ActiveRecord::PendingMigrationError => e
 end
 
 Dir[Rails.root.join("spec/support/**/*.rb")].sort.each { |f| require f }
+require Rails.root.join("lib/errors")
 
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures

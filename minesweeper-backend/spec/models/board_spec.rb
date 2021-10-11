@@ -45,7 +45,7 @@ RSpec.describe Board, type: :model do
     end
 
     it "raises if cell does not exists" do
-      expect { subject.at(100, 100) }.to raise_error(Board::CellDoesNotExistError)
+      expect { subject.at(100, 100) }.to raise_error(Errors::CellDoesNotExistError)
     end
   end
 end

@@ -1,5 +1,5 @@
 class Cell
-  class MineFoundError < StandardError; end
+  # class MineFoundError < StandardError; end
 
   attr_accessor :board, :row, :col, :revealed, :flagged, :mine, :neighbors_count
 
@@ -46,7 +46,7 @@ class Cell
 
     @revealed = true
 
-    raise MineFoundError, "Mine found error" if mine?
+    raise Errors::MineFoundError, "Mine found error" if mine?
 
     neighbor_cells.each do |neighbor|
       if !neighbor.revealed? && neighbor.neighbors_count.zero? && !neighbor.mine?

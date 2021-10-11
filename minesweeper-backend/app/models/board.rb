@@ -1,7 +1,7 @@
 class Board
   attr_accessor :width, :height, :mines, :mines_count
 
-  class CellDoesNotExistError < StandardError; end
+  # class CellDoesNotExistError < StandardError; end
 
   DEFAULT_WIDTH = 10
   DEFAULT_HEIGHT = 10
@@ -59,18 +59,20 @@ class Board
   def reveal(row, col)
     cell = at(row, col)
     cell.reveal!
+  rescue Errors::MineFoundError
+    raise Errors::GameOver, "Game over!"
   end
 
   # Public: Returns a Cell at the given coordinates.
   def at(row, col)
-    raise CellDoesNotExistError unless cell_exists?(row, col)
+    raise Errors::CellDoesNotExistError unless cell_exists?(row, col)
 
     grid[row][col]
   end
 
   # Public: Returns a grid cell at the given coordinates.
   def [](row, col)
-    raise CellDoesNotExistError unless cell_exists?(row, col)
+    raise Errors::CellDoesNotExistError unless cell_exists?(row, col)
 
     grid[row][col]
   end
