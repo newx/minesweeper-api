@@ -8,4 +8,7 @@
 - [ ] board
   - [x] create a random number of mines at random positions
   - [x] print board to console for testing
-
+  - [ ] check if flagged cells matches all mines
+- [ ] cell
+  - [x] find each cell neighbor mines
+  - [ ] flag a cell
