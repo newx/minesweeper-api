@@ -8,6 +8,8 @@
       - [Login](#login)
       - [Access user data via JWT authentication](#access-user-data-via-jwt-authentication)
       - [Sign Out](#sign-out)
+  - [GrahpQL API](#grahpql-api)
+    - [GraphiQL console](#graphiql-console)
 ## Install and Setup
 
 ## REST API
@@ -43,3 +45,10 @@ curl -XGET -H "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwic2NwIj
 ```sh
 curl -XDELETE -H "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwic2NwIjoidXNlciIsImF1ZCI6bnVsbCwiaWF0IjoxNjMzOTc3MDcxLCJleHAiOjE2MzM5ODA2NzEsImp0aSI6IjkyNDU4M2JmLTliYzAtNDA3Zi1iYjkzLTYyZDdlYjQ1NzMyMiJ9.IyZoLIzggTYQnyZO14CRxUEBHq5m6LmWN2-TG3essy8" -H "Content-Type: application/json" http://localhost:3000/users/sign_out
 ```
+
+## GrahpQL API
+
+### GraphiQL console
+
+- [GraphiQL console url](http://localhost:3000/graphiql)
+
