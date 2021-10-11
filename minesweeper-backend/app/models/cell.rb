@@ -1,9 +1,11 @@
 class Cell
+  class MineFoundError < StandardError; end
+
   attr_accessor :board, :row, :col, :revealed, :flagged, :mine, :neighbors_count
 
   NEIGHBOR_OFFSETS = [[-1, -1], [-1, 0], [-1, 1], [0, 1], [0, -1], [1, 1], [1, 0], [1, -1]].freeze
 
-  def initialize(board:, row:, col:, mine: false, revealed: true)
+  def initialize(board:, row:, col:, mine: false, revealed: false)
     @board = board
     @row = row
     @col = col
@@ -22,13 +24,37 @@ class Cell
 
   # Public: Returns the number of mines in the neighbors cells.
   def neighbor_mines_count
-    neighbor_cells.count(&:mine?) unless mine?
+    neighbor_cells.count(&:mine?)
+  end
+
+  def neighbors_count_to_s
+    neighbors_count.positive? ? neighbors_count.to_s : " "
+  end
+
+  # Public: Reveals the cell and recursively reveals the neighbors cells that
+  # have neighbors_count equal zero.
+  def reveal
+    return if revealed?
+
+    @revealed = true
+
+    raise MineFoundError, "Mine found error" if mine?
+
+    neighbor_cells.each do |neighbor|
+      if !neighbor.revealed? && neighbor.neighbors_count.zero? && !neighbor.mine?
+        neighbor.reveal
+      end
+    end
   end
 
   # Public: Returns the cell content.
-  def to_s
-    if revealed
-      mine ? "x" : neighbors_count.to_s
+  def to_s(force_reveal: false)
+    if revealed || force_reveal
+      if mine?
+        "x"
+      else
+        neighbors_count_to_s
+      end
     else
       flagged ? "F" : "*"
     end
@@ -46,6 +72,10 @@ class Cell
   end
 
   private
+
+  def no_neighbor_mines?
+    neighbors_count.zero?
+  end
 
   # Private: Returns all the neighbors cells.
   # Returns an array of Cell objects.

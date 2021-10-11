@@ -11,13 +11,14 @@ RSpec.describe Board, type: :model do
   end
 
   describe "#to_table" do
-    it "each printed grid cell matches a grid cell position" do
-      table = subject.to_table
+    it "each printed column value matches a grid cell column values" do
+      table = subject.to_table(force_reveal: true)
 
       puts table
 
       subject.grid.transpose.each_index do |column_index|
-        expect(table.column(column_index)).to eq(subject.grid.transpose[column_index].map(&:to_s))
+        column_values = subject.grid.transpose[column_index].map { |cell| cell.to_s(force_reveal: true) }
+        expect(table.column(column_index)).to eq(column_values)
       end
     end
   end

@@ -25,10 +25,10 @@ class Board
   end
 
   # Public: prints the board as a table of cells to console.
-  def to_table
+  def to_table(force_reveal: false)
     Terminal::Table.new do |t|
       grid.each_with_index do |row, row_index|
-        t.add_row row.map(&:to_s)
+        t.add_row(row.map { |cell| cell.to_s(force_reveal: force_reveal) })
         t.add_separator unless last_grid_row?(row_index)
       end
     end
@@ -36,12 +36,12 @@ class Board
 
   # Public: returns the board grid as an 2D array with each cell rendered value
   # as a string.
-  def to_a
+  def to_a(force_reveal: false)
     grid_rendered = Array.new(width) { Array.new(height) }
 
     grid.each do |row|
       row.each do |cell|
-        grid_rendered[cell.row][cell.col] = cell.to_s
+        grid_rendered[cell.row][cell.col] = cell.to_s(force_reveal: force_reveal)
       end
     end
 

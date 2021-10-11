@@ -16,7 +16,7 @@ RSpec.describe Cell, type: :model do
 
       it "returns empty value when cell has no mine" do
         subject.mine = false
-        expect(subject.to_s).to eq(subject.neighbor_mines_count.to_s)
+        expect(subject.to_s).to eq(subject.neighbors_count_to_s)
       end
     end
 
@@ -39,17 +39,37 @@ RSpec.describe Cell, type: :model do
     include_context "board_with_fixed_mines"
 
     it "returns the expected neighbors_count values" do
-      puts board.to_table
+      puts board.to_table(force_reveal: true)
 
-      rendered_grid = board.to_a
+      rendered_grid = board.to_a(force_reveal: true)
 
       rendered_grid.each_with_index do |row, row_index|
         row.each_with_index do |cell_value, col_index|
           cell = board.at(row_index, col_index)
+          cell.revealed = true
 
-          expect(cell.neighbor_mines_count.to_s).to eq(cell_value) unless cell.mine?
+          expect(cell.neighbors_count_to_s).to eq(cell_value) unless cell.mine?
         end
       end
+    end
+  end
+
+  describe "#reveal" do
+    include_context "board_with_fixed_mines"
+
+    it "recursively reveal neighbors cells with no neighbors mines" do
+      puts board.to_table
+
+      cell = board.at(0, 0)
+      cell.reveal
+
+      puts board.to_table
+      puts board.to_a.inspect
+
+      expect(board.grid[0].map(&:to_s)).to eq([" ", " ", " ", " ", " ", " ", " ", " ", " ", " "])
+      expect(board.grid[1].map(&:to_s)).to eq([" ", "*", "*", "*", "*", "*", " ", " ", " ", " "])
+      expect(board.grid[2].map(&:to_s)).to eq(["*", "*", "*", "*", "*", "*", "*", "*", " ", " "])
+      expect(board.grid[3].map(&:to_s)).to eq(["*", "*", "*", "*", "*", "*", "*", "*", " ", " "])
     end
   end
 end
