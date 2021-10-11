@@ -70,7 +70,7 @@
 
 ### Graphql Types
 
-- [ ] Game
-- [ ] Board
-- [ ] Cell
-- [ ] User
+- [x] Game
+- [x] Board
+- [x] Cell
+- [x] User
