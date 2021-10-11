@@ -3,7 +3,15 @@ class Cell
 
   attr_accessor :board, :row, :col, :revealed, :flagged, :mine, :neighbors_count
 
-  NEIGHBOR_OFFSETS = [[-1, -1], [-1, 0], [-1, 1], [0, 1], [0, -1], [1, 1], [1, 0], [1, -1]].freeze
+  # Defines the offsets of the neighboars cells.
+  NEIGHBOR_OFFSETS = [
+    # Top neighbors
+    [-1, -1], [-1, 0], [-1, 1],
+    # Left and right neighbors
+    [0, -1], [0, 1],
+    # Bottom neighbors
+    [1, -1], [1, 0], [1, 1]
+  ].freeze
 
   def initialize(board:, row:, col:, mine: false, revealed: false)
     @board = board
