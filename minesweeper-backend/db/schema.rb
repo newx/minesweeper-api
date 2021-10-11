@@ -21,6 +21,7 @@ ActiveRecord::Schema.define(version: 2021_10_11_140552) do
     t.integer "cols", default: 10
     t.integer "mines", default: 10
     t.integer "time_elapsed", default: 0
+    t.json "board_state", default: {}
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end

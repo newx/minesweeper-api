@@ -31,8 +31,8 @@
   - [x] Ability to select the game parameters: number of rows, columns, and mines
   - [ ] Detect when game is over
   - [x] Detect if the game was won
-  - [ ] Ability to start a new game and preserve/resume the old ones
-  - [ ] serialize game state data
+  - [x] Ability to start a new game and preserve/resume the old ones
+  - [x] serialize board state data
   - [ ] Time tracking
   - [ ] Ability to support multiple users/accounts
 

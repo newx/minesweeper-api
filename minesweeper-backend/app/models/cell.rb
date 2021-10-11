@@ -1,6 +1,4 @@
 class Cell
-  # class MineFoundError < StandardError; end
-
   attr_accessor :board, :row, :col, :revealed, :flagged, :mine, :neighbors_count
 
   # Defines the offsets of the neighboars cells.
@@ -70,6 +68,13 @@ class Cell
     else
       flagged ? "?" : "*"
     end
+  end
+
+  def load_state(state)
+    @mine = state[:mine]
+    @revealed = state[:revealed]
+    @flagged = state[:flagged]
+    @neighbors_count = state[:neighbors_count]
   end
 
   def to_h

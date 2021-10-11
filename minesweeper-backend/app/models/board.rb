@@ -1,8 +1,6 @@
 class Board
   attr_accessor :width, :height, :mines, :mines_count
 
-  # class CellDoesNotExistError < StandardError; end
-
   DEFAULT_WIDTH = 10
   DEFAULT_HEIGHT = 10
   DEFAULT_MINES_COUNT = 10
@@ -41,18 +39,19 @@ class Board
     end
   end
 
-  # Public: returns the board grid as an 2D array with each cell rendered value
-  # as a string.
-  def to_a(force_reveal: false)
-    grid_rendered = Array.new(width) { Array.new(height) }
+  # Public: returns the board grid as an 2D array with each cell rendered or
+  # or attributes values.
+  def to_a(force_reveal: false, render: false)
+    grid_copy = Array.new(width) { Array.new(height) }
 
     grid.each do |row|
       row.each do |cell|
-        grid_rendered[cell.row][cell.col] = cell.to_s(force_reveal: force_reveal)
+        value = render ? cell.to_s(force_reveal: force_reveal) : cell.to_h
+        grid_copy[cell.row][cell.col] = value
       end
     end
 
-    grid_rendered
+    grid_copy
   end
 
   # Public: Reveals a given cell.
@@ -93,8 +92,24 @@ class Board
     calculate_neighbor_mines
   end
 
+  # Public: Loads board from board state data.
+  def load_board_state(board_state)
+    reset_mines!
+    reset_grid!
+    create_grid
+
+    board_state.each do |row|
+      row.each do |cell_state|
+        cell = at(cell_state[:row], cell_state[:col])
+        cell.load_state(cell_state)
+
+        @mines << cell if cell.mine?
+      end
+    end
+  end
+
   def reset_mines!
-    mines_positions.each do |coordinates|
+    mines_coordinates.each do |coordinates|
       cell = at(*coordinates)
       cell.mine = false
     end
@@ -105,6 +120,21 @@ class Board
   # Public: Flags all mines on the grid.
   def flag_all_mines!
     mines.each(&:flag!)
+  end
+
+  # Public: Returns the mines coordinates on the grid.
+  def mines_coordinates
+    coordinates_for(mines)
+  end
+
+  # Public: Returns flagged cells as an array.
+  def flagged
+    grid.flatten.select(&:flagged?)
+  end
+
+  # Public: Returns the flagged coordinates on the grid.
+  def flagged_coordinates
+    coordinates_for(flagged)
   end
 
   private
@@ -119,6 +149,10 @@ class Board
     end
   end
 
+  def reset_grid!
+    @grid = nil
+  end
+
   # Private: Creates random mines on the grid. Up to the mines_count limit.
   def create_mines
     while mines_count > mines.size
@@ -129,11 +163,6 @@ class Board
 
       @mines << cell
     end
-  end
-
-  # Private: Returns the mines positions on the grid.
-  def mines_positions
-    mines.map { |cell| [cell.row, cell.col] }
   end
 
   # Private: Sets the neighbor mines count for each cell.
@@ -151,5 +180,10 @@ class Board
   # Private: Returns true if the given ro w index is the last row of the grid.
   def last_grid_row?(row_index)
     row_index == grid.length - 1
+  end
+
+  # Private: Returns the coordinates for the given cells.
+  def coordinates_for(cells)
+    cells.map { |cell| [cell.row, cell.col] }.sort
   end
 end

@@ -48,4 +48,17 @@ RSpec.describe Board, type: :model do
       expect { subject.at(100, 100) }.to raise_error(Errors::CellDoesNotExistError)
     end
   end
+
+  describe "#load_board_state" do
+    include_context "board_with_fixed_mines"
+
+    it "loads a board state" do
+      expect(subject.to_a).to_not eq(fixed_board.to_a)
+
+      subject.load_board_state(fixed_board.to_a)
+
+      expect(subject.to_a).to eq(fixed_board.to_a)
+      expect(subject.mines_coordinates).to eq(fixed_board.mines_coordinates)
+    end
+  end
 end

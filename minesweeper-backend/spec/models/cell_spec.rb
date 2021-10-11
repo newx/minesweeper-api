@@ -41,7 +41,7 @@ RSpec.describe Cell, type: :model do
     it "returns the expected neighbors_count values" do
       puts fixed_board.to_table(force_reveal: true)
 
-      rendered_grid = fixed_board.to_a(force_reveal: true)
+      rendered_grid = fixed_board.to_a(force_reveal: true, render: true)
 
       rendered_grid.each_with_index do |row, row_index|
         row.each_with_index do |cell_value, col_index|
@@ -64,7 +64,7 @@ RSpec.describe Cell, type: :model do
       cell.reveal!
 
       puts fixed_board.to_table
-      puts fixed_board.to_a.inspect
+      puts fixed_board.to_a(render: true).inspect
 
       expect(fixed_board.grid[0].map(&:to_s)).to eq([" ", " ", " ", " ", " ", " ", " ", " ", " ", " "])
       expect(fixed_board.grid[1].map(&:to_s)).to eq([" ", "*", "*", "*", "*", "*", " ", " ", " ", " "])

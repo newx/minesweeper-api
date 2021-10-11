@@ -6,6 +6,7 @@ class CreateGames < ActiveRecord::Migration[6.1]
       t.integer :cols, default: Board::DEFAULT_HEIGHT
       t.integer :mines, default: Board::DEFAULT_MINES_COUNT
       t.integer :time_elapsed, default: 0
+      t.json :board_state, default: {}
 
       t.timestamps
     end
