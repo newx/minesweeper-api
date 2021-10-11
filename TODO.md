@@ -5,9 +5,11 @@
   - [Board](#board)
   - [Cell](#cell)
   - [Game](#game)
+  - [Authentication API](#authentication-api)
   - [GraphQL API](#graphql-api)
     - [Graphql Mutations](#graphql-mutations)
     - [Graphql Queries](#graphql-queries)
+    - [Graphql Types](#graphql-types)
 ## General
 
 - [x] read about Minesweeper game and its rules
@@ -37,12 +39,38 @@
   - [ ] Time tracking
   - [ ] Ability to support multiple users/accounts
 
+## Authentication API
+
+- [x] install and setup devise
+- [x] setup devise authentication via JWT
+- [x] user sign up endpoint
+- [x] user sign in endpoint to get JWT token
+- [x] user sign out endpoint
+- [x] sessions_controller spec
+- [x] registrations_controller spec
+
 ## GraphQL API
 
-  - [ ] install and setup devise
-  - [ ] install and setup graphql-ruby gem
-  - [ ] setup devise authentication via JWT
+- [ ] install and setup graphql-ruby gem
 
 ### Graphql Mutations
 
+- [ ] game - start a new game
+- [ ] game - save game
+- [ ] game - resume game
+- [ ] board - reveal cell
+- [ ] board - flag a cell
+
+
 ### Graphql Queries
+
+- [ ] get game info
+  - [ ] includes board
+- [ ] get games list
+
+### Graphql Types
+
+- [ ] Game
+- [ ] Board
+- [ ] Cell
+- [ ] User
