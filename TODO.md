@@ -15,6 +15,7 @@
 - [x] install and setup a Rails api (`rails new minesweeper-backend --api -d postgresql`)
 - [x] setup Rspec
 - [x] setup rubocop
+- [x] create User model
 
 ## Board
 
@@ -38,7 +39,6 @@
 
 ## GraphQL API
 
-  - [ ] create User model
   - [ ] install and setup devise
   - [ ] install and setup graphql-ruby gem
   - [ ] setup devise authentication via JWT

@@ -1,4 +1,6 @@
 class Game < ApplicationRecord
+  belongs_to :user
+
   before_save :save_board_state
 
   def board
