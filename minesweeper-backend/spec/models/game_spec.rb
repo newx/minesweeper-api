@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Game, type: :model do
-  subject { Game.create!(rows: 10, cols: 10, mines: 10) }
+  subject { create(:game) }
 
   describe "#board" do
     it "should return a board" do
