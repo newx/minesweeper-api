@@ -52,7 +52,7 @@
 ## GraphQL API
 
 - [x] install and setup graphql-ruby gem
-- [ ] install/setup goldiloader gem to avoid N + 1 queries
+- [x] install goldiloader gem to eager load ActiveRecord queries and avoid N + 1 queries
 
 ### Graphql Mutations
 
