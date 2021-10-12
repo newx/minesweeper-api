@@ -17,14 +17,14 @@ class Cell
     @col = col
     @revealed = revealed
     @mine = mine
-    @neighbors_count = 0
+    @neighbors_count = nil
   end
 
   alias mine? mine
   alias revealed? revealed
 
   # Public: Calculate and set neighbors count.
-  def set_neighbors_count!
+  def update_neighbors_count!
     @neighbors_count = neighbor_mines_count
   end
 
@@ -34,7 +34,7 @@ class Cell
   end
 
   def neighbors_count_to_s
-    neighbors_count.positive? ? neighbors_count.to_s : " "
+    neighbors_count&.positive? ? neighbors_count.to_s : " "
   end
 
   # Public: Reveals the cell and recursively reveals the neighbors cells that
@@ -70,7 +70,10 @@ class Cell
     end
   end
 
+  # Public: Loads a cell from a hash.
   def load_state(state)
+    state.symbolize_keys!
+
     @mine = state[:mine]
     @revealed = state[:revealed]
     @flagged = state[:flagged]

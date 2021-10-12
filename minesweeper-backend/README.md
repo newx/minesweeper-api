@@ -25,7 +25,7 @@ curl -XPOST -H "Content-Type: application/json" -d '{ "user": { "email": "test@e
 #### Login
 
 ```sh
-curl -XPOST -i -H "Content-Type: application/json" -d '{ "user": { "email": "test@example.com", "password": "12345678" } }' http://localhost:3000/users/sign_in
+curl -XPOST -i -H "Content-Type: application/json" -d '{ "user": { "email": "newx@example.com", "password": "123456" } }' http://localhost:3000/users/sign_in
 ```
 
 Example response:

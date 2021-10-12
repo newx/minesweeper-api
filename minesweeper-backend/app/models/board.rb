@@ -10,8 +10,6 @@ class Board
     @height = height
     @mines_count = mines_count
     @mines = []
-
-    setup!
   end
 
   def setup!
@@ -78,11 +76,14 @@ class Board
 
   # Public: Returns whether a cell exists or is valid at the given coordinates.
   def cell_exists?(row, col)
+    return false if row.nil? || col.nil?
+
     row.between?(0, width - 1) && col.between?(0, height - 1)
   end
 
   # Public: Set grid mines at specific coordinates and recalculate neighbor mines.
-  def create_fixed_mines(coordinates)
+  def create_fixed_mines!(coordinates)
+    reset_mines!
     coordinates.each do |coordinate|
       cell = at(*coordinate)
       cell.mine = true
@@ -100,6 +101,7 @@ class Board
 
     board_state.each do |row|
       row.each do |cell_state|
+        cell_state.symbolize_keys!
         cell = at(cell_state[:row], cell_state[:col])
         cell.load_state(cell_state)
 
@@ -167,8 +169,10 @@ class Board
 
   # Private: Sets the neighbor mines count for each cell.
   def calculate_neighbor_mines
-    grid.each do |row|
-      row.each(&:set_neighbors_count!)
+    grid.each_with_index do |row, row_index|
+      row.each do |cell|
+        cell.update_neighbors_count!
+      end
     end
   end
 

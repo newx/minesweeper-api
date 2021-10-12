@@ -1,7 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Cell, type: :model do
-  let!(:board) { Board.new }
+  let!(:board) do
+    Board.new.tap do |b|
+      b.setup!
+    end
+  end
 
   subject { board.at(5, 5) }
 

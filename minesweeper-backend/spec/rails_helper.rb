@@ -32,7 +32,6 @@ rescue ActiveRecord::PendingMigrationError => e
 end
 
 Dir[Rails.root.join("spec/support/**/*.rb")].sort.each { |f| require f }
-require Rails.root.join("lib/errors")
 
 RSpec.configure do |config|
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
@@ -65,4 +64,7 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
   # config.filter_gems_from_backtrace("gem name")
+
+  # Custom helpers
+  config.include GraphQLHelpers, type: :request
 end

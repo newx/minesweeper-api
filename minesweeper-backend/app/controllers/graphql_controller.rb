@@ -8,10 +8,11 @@ class GraphqlController < ApplicationController
     variables = prepare_variables(params[:variables])
     query = params[:query]
     operation_name = params[:operationName]
+
     context = {
-      # Query context goes here, for example:
-      # current_user: current_user,
+      current_user: current_user
     }
+
     result = MinesweeperBackendSchema.execute(query, variables: variables, context: context, operation_name: operation_name)
     render json: result
   rescue StandardError => e
@@ -46,5 +47,28 @@ class GraphqlController < ApplicationController
     logger.error e.backtrace.join("\n")
 
     render json: { errors: [{ message: e.message, backtrace: e.backtrace }], data: {} }, status: 500
+  end
+
+  # FIXME: Migrate this to graphql-auth gem. Currently its getting an error due to incompatible version of graphql-auth gem.
+  def current_user
+    return nil if authorization_header.blank? && jwt_token.blank?
+
+    data = JWT.decode(jwt_token, jwt_secret_key, true, algorithm: "HS256", verify_jti: true)[0]
+
+    User.find_by(id: data["sub"])
+  rescue JWT::VerificationError, JWT::DecodeError => e
+    Rails.logger.error "Failed to decode/verify JWT: #{e.class} - #{e}"
+  end
+
+  def jwt_secret_key
+    @jwt_secret_key ||= Rails.application.credentials.devise[:jwt_secret_key]
+  end
+
+  def jwt_token
+    authorization_header.split(" ").last
+  end
+
+  def authorization_header
+    request.headers["Authorization"]
   end
 end

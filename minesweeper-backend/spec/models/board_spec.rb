@@ -3,6 +3,10 @@ require 'rails_helper'
 RSpec.describe Board, type: :model do
   subject { Board.new }
 
+  before do
+    subject.setup!
+  end
+
   describe "#grid" do
     it "returns a grid with default size" do
       expect(subject.grid.length).to eq(Board::DEFAULT_WIDTH)
