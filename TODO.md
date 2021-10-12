@@ -51,7 +51,8 @@
 
 ## GraphQL API
 
-- [ ] install and setup graphql-ruby gem
+- [x] install and setup graphql-ruby gem
+- [ ] install/setup goldiloader gem to avoid N + 1 queries
 
 ### Graphql Mutations
 
@@ -64,13 +65,16 @@
 
 ### Graphql Queries
 
-- [ ] get game info
-  - [ ] includes board
-- [ ] get games list
+- [x] get game info
+  - [x] includes board
+- [x] get games list
 
 ### Graphql Types
 
-- [x] Game
-- [x] Board
-- [x] Cell
-- [x] User
+- [x] GameType
+- [x] BoardType
+- [x] CellType
+- [x] UserType
+- [x] GridType
+- [x] RowType
+- [x] CellType
