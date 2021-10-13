@@ -26,6 +26,18 @@ class Board
     @grid ||= Array.new(width) { Array.new(height) }
   end
 
+  def board_size
+    width * height
+  end
+
+  def non_mines_count
+    board_size - mines_count
+  end
+
+  def non_mines_cells
+    grid.flatten.reject { |cell| cell.mine? }
+  end
+
   # Public: Returns the count of mines that were correctly flagged.
   def correct_flags_count
     mines.count(&:flagged)
@@ -68,6 +80,10 @@ class Board
     cell.reveal!
   rescue Errors::MineFoundError
     raise Errors::GameOver, "Cell #{row}, #{col} has a mine. Game over!"
+  end
+
+  def all_non_mines_cells_revealed?
+    revealed.size == non_mines_count
   end
 
   # Public: Returns a Cell at the given coordinates.

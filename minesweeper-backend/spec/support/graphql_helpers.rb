@@ -20,11 +20,24 @@ module GraphQLHelpers
   end
 
   def response_errors
-    response_body["errors"]
+    response_body.fetch("errors", [])
   end
 
   def response_error_messages
     response_errors.map { |e| e["message"] }
+  end
+
+  def expect_no_graphql_errors
+    if response_errors.any?
+      puts "GraphQL errors:"
+      response_errors.each do |error|
+        puts "-" * 80
+        pp error
+        puts "-" * 80
+      end
+    end
+
+    expect(response_errors).to be_empty
   end
 
   def expect_graphql_error(error_message)

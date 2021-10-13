@@ -102,9 +102,25 @@ RSpec.describe Game, type: :model do
       expect(subject.won?).to be false
     end
 
-    it "should return true if the game is won" do
-      subject.board.flag_all_mines!
-      expect(subject.won?).to be_truthy
+    describe "when all cells are revealed" do
+      before do
+        cells_list = subject.board.non_mines_cells
+
+        subject.play do
+          # reveal all non-mines cells except the last one
+          while cells_list.size > 1
+            cell = cells_list.shift
+            cell.revealed = true
+          end
+        end
+      end
+
+      let!(:last_non_revealed_cell) { subject.board.non_mines_cells.reject(&:revealed?).first }
+
+      it "should return true" do
+        last_non_revealed_cell.reveal!
+        expect(subject.won?).to be_truthy
+      end
     end
   end
 

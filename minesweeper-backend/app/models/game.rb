@@ -6,7 +6,7 @@ class Game < ApplicationRecord
   after_initialize :init_board
   before_create :update_settings_based_on_game_level
 
-  enum status: { started: 0, idle: 1, paused: 2, game_over: 3 }
+  enum status: { started: 0, idle: 1, paused: 2, game_over: 3, win: 4 }
   enum level: { beginner: 0, intermediate: 1, expert: 2 }
 
   LEVELS = {
@@ -26,7 +26,7 @@ class Game < ApplicationRecord
   # Public: Whether the game was won.
   # To win the game players must uncover all non-mine cells.
   def won?
-    board.correct_flags_count == board.mines_count
+    board.all_non_mines_cells_revealed?
   end
 
   # Public: Wraps a block of multiple actions and then saves the board state.
@@ -50,7 +50,7 @@ class Game < ApplicationRecord
   # NOTE: This is a simple time elapsed calculation and is not accurate. A better
   # approach would take into account only the time a game is actually being played.
   def time_elapsed_secs
-    ((updated_at || Time.zone.now) - created_at).to_i.seconds
+    ((winned_at || updated_at || Time.zone.now) - created_at).to_i.seconds
   end
 
   private

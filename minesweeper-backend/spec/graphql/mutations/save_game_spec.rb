@@ -51,10 +51,10 @@ RSpec.describe "SaveGame", type: :request do
   context "saves a given game" do
     specify do
       graphql_request(gql_query, variables: variables, headers: headers)
+      expect_no_graphql_errors
 
       response = response_body.dig("data", "saveGame")
 
-      pp response
       expect(response["game"]["status"]).to eq("paused")
 
       game.reload

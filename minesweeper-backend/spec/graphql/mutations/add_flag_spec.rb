@@ -42,8 +42,7 @@ RSpec.describe "AddFlag", type: :request do
     context "when a cell exists" do
       it "flags a cell" do
         graphql_request(gql_query, variables: variables, headers: headers)
-
-        pp response_body
+        expect_no_graphql_errors
 
         response = response_body.dig("data", "addFlag")
 

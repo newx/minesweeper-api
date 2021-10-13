@@ -30,6 +30,7 @@ RSpec.describe "Reveal", type: :request do
             col
             neighborsCount
           }
+          win
         }
       }
     GRAPHQL
@@ -47,11 +48,10 @@ RSpec.describe "Reveal", type: :request do
 
   let!(:headers) { user_auth_headers(user) }
 
-  context "fetch a user's game" do
+  context "reveals a game board cell" do
     specify do
       graphql_request(gql_query, variables: variables, headers: headers)
-
-      pp response_body
+      expect_no_graphql_errors
 
       response = response_body.dig("data", "reveal")
 
@@ -66,6 +66,34 @@ RSpec.describe "Reveal", type: :request do
 
       expect(revealed_cells.size).to eq(game_updated.board.revealed.size)
       expect(revealed_cells_coords).to eq(expected_revealed_cells_coords)
+    end
+  end
+
+  describe "when the last board cell is revealed" do
+    before do
+      cells_list = game.board.non_mines_cells
+
+      game.play do
+        # reveal all non-mines cells except the last one
+        while cells_list.size > 1
+          cell = cells_list.shift
+          cell.revealed = true
+        end
+      end
+    end
+
+    let!(:last_non_revealed_cell) { game.board.non_mines_cells.reject(&:revealed?).first }
+
+    it "wins the game" do
+      variables[:input][:row] = last_non_revealed_cell.row
+      variables[:input][:col] = last_non_revealed_cell.col
+
+      graphql_request(gql_query, variables: variables, headers: headers)
+      expect_no_graphql_errors
+
+      response = response_body.dig("data", "reveal")
+
+      expect(response["win"]).to be_truthy
     end
   end
 end

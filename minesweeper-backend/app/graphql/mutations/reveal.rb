@@ -5,6 +5,7 @@ class Mutations::Reveal < Mutations::BaseMutation
 
   field :cell, Types::CellType, "The revealed cell", null: true
   field :revealed_cells, [Types::CellType], "All revealed cells", null: true
+  field :win, Boolean, "Whether the game has been won", null: true
 
   argument :game_id, ID, required: true
   argument :row, Integer, "Cell row coordinate", required: true
@@ -20,7 +21,14 @@ class Mutations::Reveal < Mutations::BaseMutation
 
     cell = revealed_cells.first
 
-    { cell: cell, revealed_cells: revealed_cells }
+    game.reload
+
+    if game.won?
+      game.win!
+      game.update!(winned_at: Time.zone.now)
+    end
+
+    { cell: cell, revealed_cells: revealed_cells, win: game.won? }
   rescue Errors::CellAlreadyRevealedError => e
     raise GraphQL::ExecutionError, e.message
   rescue Errors::GameOver

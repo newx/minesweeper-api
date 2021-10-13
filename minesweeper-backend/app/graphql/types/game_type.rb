@@ -10,7 +10,13 @@ module Types
     field :status, Types::GameStatusType, null: true
     field :time_elapsed_secs, Integer, null: true
     field :board_state, GraphQL::Types::JSON, null: true
+    field :won, Boolean, null: true
+    field :winned_at, GraphQL::Types::ISO8601DateTime, null: true
     field :created_at, GraphQL::Types::ISO8601DateTime, null: false
     field :updated_at, GraphQL::Types::ISO8601DateTime, null: false
+
+    def won
+      object.status == "win"
+    end
   end
 end

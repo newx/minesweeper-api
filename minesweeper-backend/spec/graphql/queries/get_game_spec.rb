@@ -13,6 +13,8 @@ RSpec.describe "GetGame", type: :request do
           id
           rows
           cols
+          won
+          winnedAt
           user {
             id
             email
@@ -48,6 +50,7 @@ RSpec.describe "GetGame", type: :request do
   context "fetch a user's game" do
     specify do
       graphql_request(gql_query, variables: variables, headers: headers)
+      expect_no_graphql_errors
 
       response = response_body.dig("data", "getGame")
 

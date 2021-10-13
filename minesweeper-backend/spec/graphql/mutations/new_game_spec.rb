@@ -49,6 +49,7 @@ RSpec.describe "NewGame", type: :request do
   context "creates a new game game" do
     specify do
       graphql_request(gql_query, variables: variables, headers: headers)
+      expect_no_graphql_errors
 
       response = response_body.dig("data", "newGame")
 

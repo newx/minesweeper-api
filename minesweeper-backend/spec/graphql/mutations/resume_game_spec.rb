@@ -59,6 +59,7 @@ RSpec.describe "ResumeGame", type: :request do
   context "resumes a given game" do
     it "restores previous game board state" do
       graphql_request(gql_query, variables: variables, headers: headers)
+      expect_no_graphql_errors
 
       response = response_body.dig("data", "resumeGame")
 
