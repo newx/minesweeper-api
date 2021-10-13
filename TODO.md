@@ -2,6 +2,7 @@
 
 - [TODO](#todo)
   - [General](#general)
+  - [Bonus](#bonus)
   - [Board](#board)
   - [Cell](#cell)
   - [Game](#game)
@@ -10,7 +11,6 @@
     - [Graphql Mutations](#graphql-mutations)
     - [Graphql Queries](#graphql-queries)
     - [Graphql Types](#graphql-types)
-- [Plus](#plus)
 ## General
 
 - [x] read about Minesweeper game and its rules
@@ -19,6 +19,15 @@
 - [x] setup Rspec
 - [x] setup rubocop
 - [x] create User model
+- [ ] update README
+  - [ ] add docs about each component
+
+## Bonus
+
+- [ ] deploy backend to Heroku
+- [ ] api client on a different language (JS maybe?)
+- [ ] update game status to idle when it's idle for x minutes (via sidekiq worker)
+- [ ] Frontend in ReactJS or Angular
 
 ## Board
 
@@ -67,7 +76,7 @@
 - [x] game - save game
 - [x] game - resume game
 - [x] board - flag a cell
-- [ ] remove a flag
+- [x] remove a flag
 
 
 ### Graphql Queries
@@ -85,7 +94,3 @@
 - [x] GridType
 - [x] RowType
 - [x] CellType
-
-# Plus
-
-- [ ] update game status to idle when it's idle for x minutes (via sidekiq worker)
