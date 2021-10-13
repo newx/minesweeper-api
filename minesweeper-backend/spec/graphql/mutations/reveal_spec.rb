@@ -56,8 +56,8 @@ RSpec.describe "Reveal", type: :request do
       response = response_body.dig("data", "reveal")
 
       expect(response["cell"]["revealed"]).to be_truthy
-      expect(response["cell"]["row"]).to be_truthy
-      expect(response["cell"]["col"]).to be_truthy
+      expect(response["cell"]["row"]).to eq(cell.row)
+      expect(response["cell"]["col"]).to eq(cell.col)
 
       revealed_cells = response["revealedCells"]
       revealed_cells_coords = revealed_cells.map { |item| [item["row"], item["col"]] }.sort

@@ -18,4 +18,17 @@ module GraphQLHelpers
   def response_body
     JSON.parse(response.body)
   end
+
+  def response_errors
+    response_body["errors"]
+  end
+
+  def response_error_messages
+    response_errors.map { |e| e["message"] }
+  end
+
+  def expect_graphql_error(error_message)
+    expect(response_errors).to_not be_blank
+    expect(response_error_messages).to include(error_message)
+  end
 end

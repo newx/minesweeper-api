@@ -62,9 +62,9 @@
 
 ### Graphql Mutations
 
-- [ ] game - start a new game
+- [x] game - start a new game
 - [ ] game - on every request (mutation) the game and board state is saved
-- [ ] board - reveal cell
+- [x] board - reveal cell
 - [ ] game - save game
 - [ ] game - resume game
 - [ ] board - flag a cell

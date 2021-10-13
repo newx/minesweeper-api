@@ -72,14 +72,14 @@ class Board
 
   # Public: Returns a Cell at the given coordinates.
   def at(row, col)
-    raise Errors::CellDoesNotExistError unless cell_exists?(row, col)
+    raise Errors::CellDoesNotExistError, "Cell does not exist" unless cell_exists?(row, col)
 
     grid[row][col]
   end
 
   # Public: Returns a grid cell at the given coordinates.
   def [](row, col)
-    raise Errors::CellDoesNotExistError unless cell_exists?(row, col)
+    raise Errors::CellDoesNotExistError, "Cell does not exist" unless cell_exists?(row, col)
 
     grid[row][col]
   end
