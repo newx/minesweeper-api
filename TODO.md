@@ -41,7 +41,7 @@
     - [ ] To win the game, players must uncover all non-mine cells, at which point, the timer is stopped
   - [x] Ability to start a new game and preserve/resume the old ones
   - [x] serialize board state data
-  - [ ] Time tracking
+  - [x] Time tracking
   - [x] Ability to support multiple users/accounts
   - [x] adds a method Game#play in which you can the board is changed and saved inside a yield block
 
