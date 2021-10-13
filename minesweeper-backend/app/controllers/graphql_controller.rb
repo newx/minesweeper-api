@@ -51,7 +51,7 @@ class GraphqlController < ApplicationController
 
   # FIXME: Migrate this to graphql-auth gem. Currently its getting an error due to incompatible version of graphql-auth gem.
   def current_user
-    return nil if authorization_header.blank? && jwt_token.blank?
+    return nil if authorization_header.blank? || jwt_token.blank?
 
     data = JWT.decode(jwt_token, jwt_secret_key, true, algorithm: "HS256", verify_jti: true)[0]
 
@@ -65,7 +65,7 @@ class GraphqlController < ApplicationController
   end
 
   def jwt_token
-    authorization_header.split(" ").last
+    authorization_header.split(" ").last if authorization_header
   end
 
   def authorization_header

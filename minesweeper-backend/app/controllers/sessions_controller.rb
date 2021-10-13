@@ -4,7 +4,7 @@ class SessionsController < Devise::SessionsController
   private
 
   def respond_with(_resource, _opts = {})
-    render json: { success: true, message: "Authentication successful.", jwt: current_token }, status: :ok
+    render json: { success: true, message: "Authentication successful.", user_id: current_user.id, jwt: current_token }, status: :ok
   end
 
   def respond_to_on_destroy

@@ -15,6 +15,7 @@ RSpec.describe "GetGames", type: :request do
           id
           rows
           cols
+          status
           won
           winnedAt
           user {

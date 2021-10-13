@@ -22,6 +22,7 @@
 - [x] install/setup graphql-doc and generate GraphQL doc
 - [ ] update README
   - [ ] add docs about each component
+- [x] change default rails port to 3001
 
 ## Bonus
 
