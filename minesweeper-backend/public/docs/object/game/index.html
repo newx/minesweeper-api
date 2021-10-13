@@ -1,0 +1,511 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="description" content="Game GraphQL documentation">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <title>Game</title>
+    <link rel="stylesheet" href="/docs/assets/style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/anchor-js/3.2.2/anchor.min.js"></script>
+    <script>
+
+    // Add anchors on DOMContentLoaded
+    document.addEventListener("DOMContentLoaded", function(event) {
+      anchors.options = {
+        placement: 'left',
+        visible: 'hover',
+        icon: '¶'
+      };
+      anchors.add('h2, h3, h4, h5, h6, .anchored');
+    });
+
+    </script>
+  </head>
+  <body>
+
+    <div id="wrap">
+      <div id="header">
+      </div>
+      <div id="sidebar">
+        <ul class="categories">
+  <li>
+    <ul class="menu-root">
+      <li>
+        <a href="/docs">GraphQL Reference</a>
+    </ul>
+  </li>
+
+  <li>
+    <p>Queries</p>
+    <ul class="menu-root">
+      <li>
+        <a href="/docs/operation/query/" class="sidebar-link">
+          Query
+        </a>
+      </li>
+      <li>
+        <a href="/docs/operation/mutation/" class="sidebar-link">
+          Mutation
+        </a>
+      </li>
+    </ul>
+  </li>
+
+  <li>
+    <p><a href="/docs/object">Objects</a></p>
+    <ul class="menu-root">
+      
+        
+      <li>
+        <a href="/docs/object/addflagpayload/" class="sidebar-link">
+          AddFlagPayload
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/docs/object/board/" class="sidebar-link">
+          Board
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/docs/object/cell/" class="sidebar-link">
+          Cell
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/docs/object/game/" class="sidebar-link">
+          Game
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/docs/object/grid/" class="sidebar-link">
+          Grid
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/docs/object/newgamepayload/" class="sidebar-link">
+          NewGamePayload
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/docs/object/removeflagpayload/" class="sidebar-link">
+          RemoveFlagPayload
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/docs/object/resumegamepayload/" class="sidebar-link">
+          ResumeGamePayload
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/docs/object/revealpayload/" class="sidebar-link">
+          RevealPayload
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/docs/object/row/" class="sidebar-link">
+          Row
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/docs/object/savegamepayload/" class="sidebar-link">
+          SaveGamePayload
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/docs/object/user/" class="sidebar-link">
+          User
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/docs/object/__directive/" class="sidebar-link">
+          __Directive
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/docs/object/__enumvalue/" class="sidebar-link">
+          __EnumValue
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/docs/object/__field/" class="sidebar-link">
+          __Field
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/docs/object/__inputvalue/" class="sidebar-link">
+          __InputValue
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/docs/object/__schema/" class="sidebar-link">
+          __Schema
+        </a>
+      </li>
+      
+        
+      <li>
+        <a href="/docs/object/__type/" class="sidebar-link">
+          __Type
+        </a>
+      </li>
+      
+    </ul>
+  </li>
+
+  <li>
+    <p><a href="/docs/operation/mutation">Mutations</a></p>
+    <ul class="menu-root">
+      
+      
+      <li>
+        <a href="/docs/mutation/addflag/" class="sidebar-link">
+          addFlag
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/docs/mutation/newgame/" class="sidebar-link">
+          newGame
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/docs/mutation/removeflag/" class="sidebar-link">
+          removeFlag
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/docs/mutation/resumegame/" class="sidebar-link">
+          resumeGame
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/docs/mutation/reveal/" class="sidebar-link">
+          reveal
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/docs/mutation/savegame/" class="sidebar-link">
+          saveGame
+        </a>
+      </li>
+      
+    </ul>
+  </li>
+
+  <li>
+    <p><a href="/docs/interface">Interfaces</a></p>
+    <ul class="menu-root">
+      
+        
+        <li>
+          <a href="/docs/interface/node/" class="sidebar-link">
+            Node
+          </a>
+        </li>
+      
+    </ul>
+  </li>
+
+  <li>
+    <p><a href="/docs/enum">Enums</a></p>
+    <ul class="menu-root">
+      
+      
+      <li>
+        <a href="/docs/enum/gamelevels/" class="sidebar-link">
+          GameLevels
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/docs/enum/gamestatus/" class="sidebar-link">
+          GameStatus
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/docs/enum/__directivelocation/" class="sidebar-link">
+          __DirectiveLocation
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/docs/enum/__typekind/" class="sidebar-link">
+          __TypeKind
+        </a>
+      </li>
+      
+    </ul>
+  </li>
+
+  <li>
+    <p><a href="/docs/union">Unions</a></p>
+    <ul class="menu-root">
+      
+    </ul>
+  </li>
+
+  <li>
+    <p><a href="/docs/input_object">Input Objects</a></p>
+    <ul class="menu-root">
+      
+      
+      <li>
+        <a href="/docs/input_object/addflaginput/" class="sidebar-link">
+          AddFlagInput
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/docs/input_object/newgameinput/" class="sidebar-link">
+          NewGameInput
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/docs/input_object/removeflaginput/" class="sidebar-link">
+          RemoveFlagInput
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/docs/input_object/resumegameinput/" class="sidebar-link">
+          ResumeGameInput
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/docs/input_object/revealinput/" class="sidebar-link">
+          RevealInput
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/docs/input_object/savegameinput/" class="sidebar-link">
+          SaveGameInput
+        </a>
+      </li>
+      
+    </ul>
+  </li>
+
+  <li>
+    <p><a href="/docs/scalar">Scalars</a></p>
+    <ul class="menu-root">
+      
+      
+      <li>
+        <a href="/docs/scalar/boolean/" class="sidebar-link">
+          Boolean
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/docs/scalar/id/" class="sidebar-link">
+          ID
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/docs/scalar/iso8601datetime/" class="sidebar-link">
+          ISO8601DateTime
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/docs/scalar/int/" class="sidebar-link">
+          Int
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/docs/scalar/json/" class="sidebar-link">
+          JSON
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/docs/scalar/string/" class="sidebar-link">
+          String
+        </a>
+      </li>
+      
+    </ul>
+  </li>
+
+  <li>
+    <p><a href="/docs/directive">Directives</a></p>
+    <ul class="menu-root">
+      
+      
+      <li>
+        <a href="/docs/directive/deprecated/" class="sidebar-link">
+          deprecated
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/docs/directive/include/" class="sidebar-link">
+          include
+        </a>
+      </li>
+      
+      
+      <li>
+        <a href="/docs/directive/skip/" class="sidebar-link">
+          skip
+        </a>
+      </li>
+      
+    </ul>
+  </li>
+</ul>
+
+      </div>
+      <div id="content">
+
+        <h1>
+<a id="game" class="anchor" href="#game" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Game</h1>
+<h2>
+<a id="fields" class="anchor" href="#fields" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Fields</h2>
+<div class="field-entry ">
+  <span id="board" class="field-name anchored">board (<code><a href="/docs/object/board">Board!</a></code>)</span>
+  <div class="description-wrapper">
+  </div>
+</div>
+<div class="field-entry ">
+  <span id="id" class="field-name anchored">id (<code><a href="/docs/scalar/id">ID!</a></code>)</span>
+  <div class="description-wrapper">
+  </div>
+</div>
+<div class="field-entry ">
+  <span id="userid" class="field-name anchored">userId (<code><a href="/docs/scalar/int">Int</a></code>)</span>
+  <div class="description-wrapper">
+  </div>
+</div>
+<div class="field-entry ">
+  <span id="user" class="field-name anchored">user (<code><a href="/docs/object/user">User</a></code>)</span>
+  <div class="description-wrapper">
+  </div>
+</div>
+<div class="field-entry ">
+  <span id="rows" class="field-name anchored">rows (<code><a href="/docs/scalar/int">Int</a></code>)</span>
+  <div class="description-wrapper">
+  </div>
+</div>
+<div class="field-entry ">
+  <span id="cols" class="field-name anchored">cols (<code><a href="/docs/scalar/int">Int</a></code>)</span>
+  <div class="description-wrapper">
+  </div>
+</div>
+<div class="field-entry ">
+  <span id="mines" class="field-name anchored">mines (<code><a href="/docs/scalar/int">Int</a></code>)</span>
+  <div class="description-wrapper">
+  </div>
+</div>
+<div class="field-entry ">
+  <span id="status" class="field-name anchored">status (<code><a href="/docs/enum/gamestatus">GameStatus</a></code>)</span>
+  <div class="description-wrapper">
+  </div>
+</div>
+<div class="field-entry ">
+  <span id="timeelapsedsecs" class="field-name anchored">timeElapsedSecs (<code><a href="/docs/scalar/int">Int</a></code>)</span>
+  <div class="description-wrapper">
+  </div>
+</div>
+<div class="field-entry ">
+  <span id="boardstate" class="field-name anchored">boardState (<code><a href="/docs/scalar/json">JSON</a></code>)</span>
+  <div class="description-wrapper">
+  </div>
+</div>
+<div class="field-entry ">
+  <span id="won" class="field-name anchored">won (<code><a href="/docs/scalar/boolean">Boolean</a></code>)</span>
+  <div class="description-wrapper">
+  </div>
+</div>
+<div class="field-entry ">
+  <span id="winnedat" class="field-name anchored">winnedAt (<code><a href="/docs/scalar/iso8601datetime">ISO8601DateTime</a></code>)</span>
+  <div class="description-wrapper">
+  </div>
+</div>
+<div class="field-entry ">
+  <span id="createdat" class="field-name anchored">createdAt (<code><a href="/docs/scalar/iso8601datetime">ISO8601DateTime!</a></code>)</span>
+  <div class="description-wrapper">
+  </div>
+</div>
+<div class="field-entry ">
+  <span id="updatedat" class="field-name anchored">updatedAt (<code><a href="/docs/scalar/iso8601datetime">ISO8601DateTime!</a></code>)</span>
+  <div class="description-wrapper">
+  </div>
+</div>
+
+      </div>
+
+      <!-- mobile only -->
+      <div id="mobile-header">
+        <a class="menu-button" onclick="document.body.classList.toggle('sidebar-open')"></a>
+        <a class="logo" href="/docs">
+
+        </a>
+      </div>
+      <div id="mobile-shade"></div>
+
+    </div>
+
+  </body>
+</html>

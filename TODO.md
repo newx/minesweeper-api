@@ -19,6 +19,7 @@
 - [x] setup Rspec
 - [x] setup rubocop
 - [x] create User model
+- [x] install/setup graphql-doc and generate GraphQL doc
 - [ ] update README
   - [ ] add docs about each component
 

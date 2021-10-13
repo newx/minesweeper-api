@@ -36,6 +36,7 @@ gem "rack-cors"
 # GraphQL
 gem "graphiql-rails"
 gem "graphql", "~> 1.12.16"
+gem "graphql-docs"
 
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem "rack-cors"
