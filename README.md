@@ -2,6 +2,14 @@
 
 - [Minesweeper GraphQL API](#minesweeper-graphql-api)
   - [Install and Setup](#install-and-setup)
+  - [Tools used](#tools-used)
+    - [rails 6.1](#rails-61)
+    - [graphql-ruby](#graphql-ruby)
+    - [graphql-docs](#graphql-docs)
+    - [goldiloader](#goldiloader)
+    - [terminal-table](#terminal-table)
+    - [devise](#devise)
+    - [devise-jwt](#devise-jwt)
   - [Environments](#environments)
     - [Local](#local)
     - [Heroku](#heroku)
@@ -75,6 +83,36 @@ export TOKEN="your token here"
 
 Done. You can now make requests to the GraphQL server. See [GrahpQL API](#grahpql-api)
 
+## Tools used
+
+### rails 6.1
+
+Rails is a web-application framework. See [link](https://github.com/rails/rails)
+
+### graphql-ruby
+
+A Ruby implementation of GraphQL.
+
+### graphql-docs
+
+Generates GraphQL docs based on GraphQL queries, mutations and types.
+
+### goldiloader
+
+goldiloader gem eager loads ActiveRecord queries and help avoid N + 1 queries.
+
+### terminal-table
+
+Tool used to print tables to Terminal console.
+
+### devise
+
+Devise is a flexible authentication solution for Rails based on Warden.
+Devise helps us to boostrap a user authentication feature quickly and securely.
+
+### devise-jwt
+
+devise-jwt is a devise extension which uses JWT tokens for user authentication. It follows secure by default principle.
 ## Environments
 
 ### Local
