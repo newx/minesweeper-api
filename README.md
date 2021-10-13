@@ -124,7 +124,6 @@ devise-jwt is a devise extension which uses JWT tokens for user authentication. 
 ### Heroku
 
 - **Heroku app URL**: https://radiant-castle-13560.herokuapp.com/
-- **GraphiQL console url**: https://radiant-castle-13560.herokuapp.com/graphiql
 - **GraphQL API docs**: https://radiant-castle-13560.herokuapp.com/docs
   
 ## REST API
