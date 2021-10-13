@@ -74,6 +74,11 @@ class Board
     cell.flag!
   end
 
+  def unflag(row, col)
+    cell = at(row, col)
+    cell.unflag!
+  end
+
   # Public: Reveals a given cell.
   def reveal(row, col)
     cell = at(row, col)

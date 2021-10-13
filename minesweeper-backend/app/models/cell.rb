@@ -63,6 +63,10 @@ class Cell
     @flagged = true
   end
 
+  def unflag!
+    @flagged = false
+  end
+
   # Public: Returns the cell content.
   def to_s(force_reveal: false)
     if revealed || force_reveal

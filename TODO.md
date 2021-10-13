@@ -67,6 +67,7 @@
 - [x] game - save game
 - [x] game - resume game
 - [x] board - flag a cell
+- [ ] remove a flag
 
 
 ### Graphql Queries
