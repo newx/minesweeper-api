@@ -17,11 +17,13 @@ class Cell
     @col = col
     @revealed = revealed
     @mine = mine
-    @neighbors_count = nil
+    @flagged = false
+    @neighbors_count = 0
   end
 
   alias mine? mine
   alias revealed? revealed
+  alias flagged? flagged
 
   # Public: Calculate and set neighbors count.
   def update_neighbors_count!
@@ -34,23 +36,27 @@ class Cell
   end
 
   def neighbors_count_to_s
-    neighbors_count&.positive? ? neighbors_count.to_s : " "
+    neighbors_count.positive? ? neighbors_count.to_s : " "
   end
 
   # Public: Reveals the cell and recursively reveals the neighbors cells that
   # have neighbors_count equal zero.
   def reveal!
-    return if revealed?
+    raise Errors::CellAlreadyRevealedError, "(#{row}, #{col})" if revealed?
 
     @revealed = true
 
     raise Errors::MineFoundError, "Mine found error" if mine?
 
+    revealed_cells = [self]
+
     neighbor_cells.each do |neighbor|
       if !neighbor.revealed? && neighbor.neighbors_count.zero? && !neighbor.mine?
-        neighbor.reveal!
+        revealed_cells << neighbor.reveal!
       end
     end
+
+    revealed_cells.uniq.flatten
   end
 
   def flag!
@@ -74,9 +80,9 @@ class Cell
   def load_state(state)
     state.symbolize_keys!
 
-    @mine = state[:mine]
-    @revealed = state[:revealed]
-    @flagged = state[:flagged]
+    @mine = state[:mine].present?
+    @revealed = state[:revealed].present?
+    @flagged = state[:flagged].present?
     @neighbors_count = state[:neighbors_count]
   end
 
@@ -90,6 +96,11 @@ class Cell
       neighbors_count: neighbors_count
     }
   end
+
+  def to_coordinates
+    [row, col]
+  end
+  alias to_c to_coordinates
 
   private
 

@@ -1,4 +1,4 @@
-shared_context "board_with_fixed_mines" do
+shared_context "game_with_fixed_board" do
   let!(:fixed_mines_coordinates) do
     [[2, 4], [2, 2], [3, 2], [3, 6], [3, 1], [4, 3], [4, 6], [5, 9], [5, 6], [9, 1]]
   end
@@ -25,15 +25,22 @@ shared_context "board_with_fixed_mines" do
   # +---+---+---+---+---+---+---+---+---+---+
   # | 1 | x | 1 |   |   |   |   |   |   |   |
   # +---+---+---+---+---+---+---+---+---+---+
-  let(:fixed_board) do
+  let!(:fixed_board) do
     board = Board.new
     board.setup!
     board.reset_mines!
     board.create_fixed_mines!(fixed_mines_coordinates)
-    board.reveal(0, 0)
-    board.reveal(0, 1)
-    board.reveal(0, 2)
 
     board
+  end
+
+  let!(:user) { create(:user) }
+
+  let!(:game_with_fixed_board) do
+    game = create(:game, user: user)
+    game.board.load_state!(fixed_board.to_a)
+    game.save_board!
+
+    game
   end
 end

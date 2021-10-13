@@ -59,4 +59,4 @@ game_2 = Game.create!(
   mines: 10
 )
 
-game_2.board.load_board_state(fixed_board.to_a)
+game_2.board.load_state!(fixed_board.to_a)

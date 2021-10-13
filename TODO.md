@@ -10,6 +10,7 @@
     - [Graphql Mutations](#graphql-mutations)
     - [Graphql Queries](#graphql-queries)
     - [Graphql Types](#graphql-types)
+- [Plus](#plus)
 ## General
 
 - [x] read about Minesweeper game and its rules
@@ -28,16 +29,21 @@
   - [x] flag a cell with a question mark
   - [x] check if flagged cells matches all mines
   - [x] when you reveal a cell having 0 neighbors_count, then all neighbors with 0 neighbors_count are revealed
+  - [ ] The first click in any game will never be a mine
 ## Game
 
   - [x] create Game model (with persistence)
   - [x] Ability to select the game parameters: number of rows, columns, and mines
   - [ ] Detect when game is over
+    - [ ] set game status when game is over
   - [x] Detect if the game was won
+    - [ ] when flags matches all mines
+    - [ ] To win the game, players must uncover all non-mine cells, at which point, the timer is stopped
   - [x] Ability to start a new game and preserve/resume the old ones
   - [x] serialize board state data
   - [ ] Time tracking
   - [ ] Ability to support multiple users/accounts
+  - [ ] adds a method Game#play in which you can the board is changed and saved inside a yield block
 
 ## Authentication API
 
@@ -57,9 +63,10 @@
 ### Graphql Mutations
 
 - [ ] game - start a new game
+- [ ] game - on every request (mutation) the game and board state is saved
+- [ ] board - reveal cell
 - [ ] game - save game
 - [ ] game - resume game
-- [ ] board - reveal cell
 - [ ] board - flag a cell
 
 
@@ -78,3 +85,7 @@
 - [x] GridType
 - [x] RowType
 - [x] CellType
+
+# Plus
+
+- [ ] update game status to idle when it's idle for x minutes (via sidekiq worker)

@@ -18,6 +18,10 @@ class Board
     calculate_neighbor_mines
   end
 
+  def new_board?
+    revealed.empty? && flagged.empty?
+  end
+
   def grid
     @grid ||= Array.new(width) { Array.new(height) }
   end
@@ -52,12 +56,18 @@ class Board
     grid_copy
   end
 
+  # Public: flags a given cell.
+  def flag(row, col)
+    cell = at(row, col)
+    cell.flag!
+  end
+
   # Public: Reveals a given cell.
   def reveal(row, col)
     cell = at(row, col)
     cell.reveal!
   rescue Errors::MineFoundError
-    raise Errors::GameOver, "Game over!"
+    raise Errors::GameOver, "Cell #{row}, #{col} has a mine. Game over!"
   end
 
   # Public: Returns a Cell at the given coordinates.
@@ -94,9 +104,8 @@ class Board
   end
 
   # Public: Loads board from board state data.
-  def load_board_state(board_state)
+  def load_state!(board_state)
     reset_mines!
-    reset_grid!
     create_grid
 
     board_state.each do |row|
@@ -110,6 +119,7 @@ class Board
     end
   end
 
+  # Public: Unset all cells mines and @mines.
   def reset_mines!
     mines_coordinates.each do |coordinates|
       cell = at(*coordinates)
@@ -139,10 +149,21 @@ class Board
     coordinates_for(flagged)
   end
 
+  def revealed
+    grid.flatten.select(&:revealed?)
+  end
+
+  # Public: Returns the flagged coordinates on the grid.
+  def revealed_coordinates
+    coordinates_for(revealed)
+  end
+
   private
 
   # Private: Creates a grid of cells.
   def create_grid
+    reset_grid!
+
     0.upto(width - 1) do |row_index|
       0.upto(height - 1) do |column_index|
         grid[row_index][column_index] =
@@ -169,7 +190,7 @@ class Board
 
   # Private: Sets the neighbor mines count for each cell.
   def calculate_neighbor_mines
-    grid.each_with_index do |row, row_index|
+    grid.each do |row|
       row.each do |cell|
         cell.update_neighbors_count!
       end

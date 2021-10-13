@@ -40,7 +40,7 @@ RSpec.describe Cell, type: :model do
   end
 
   describe "#neighbor_mines_count" do
-    include_context "board_with_fixed_mines"
+    include_context "game_with_fixed_board"
 
     it "returns the expected neighbors_count values" do
       puts fixed_board.to_table(force_reveal: true)
@@ -59,16 +59,23 @@ RSpec.describe Cell, type: :model do
   end
 
   describe "#reveal!" do
-    include_context "board_with_fixed_mines"
+    include_context "game_with_fixed_board"
+
+    let!(:expected_revealed_cells_coords) do
+      [[0, 0], [0, 1], [0, 2], [0, 3], [0, 4], [0, 5], [0, 6], [0, 7], [0, 8], [0, 9], [1, 0], [1, 6], [1, 7], [1, 8], [1, 9], [2, 8], [2, 9], [3, 8], [3, 9]]
+    end
 
     it "recursively reveal neighbors cells with no neighbors mines" do
+      puts "Before reveal"
       puts fixed_board.to_table
 
       cell = fixed_board.at(0, 0)
-      cell.reveal!
+      revealed_cells = cell.reveal!
 
+      expect(revealed_cells.map(&:to_c).sort).to eq(expected_revealed_cells_coords)
+
+      puts "After revealing cell (0, 0)"
       puts fixed_board.to_table
-      puts fixed_board.to_a(render: true).inspect
 
       expect(fixed_board.grid[0].map(&:to_s)).to eq([" ", " ", " ", " ", " ", " ", " ", " ", " ", " "])
       expect(fixed_board.grid[1].map(&:to_s)).to eq([" ", "*", "*", "*", "*", "*", " ", " ", " ", " "])

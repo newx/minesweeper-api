@@ -53,13 +53,13 @@ RSpec.describe Board, type: :model do
     end
   end
 
-  describe "#load_board_state" do
-    include_context "board_with_fixed_mines"
+  describe "#load_state!" do
+    include_context "game_with_fixed_board"
 
     it "loads a board state" do
       expect(subject.to_a).to_not eq(fixed_board.to_a)
 
-      subject.load_board_state(fixed_board.to_a)
+      subject.load_state!(fixed_board.to_a)
 
       expect(subject.to_a).to eq(fixed_board.to_a)
       expect(subject.mines_coordinates).to eq(fixed_board.mines_coordinates)

@@ -51,7 +51,6 @@ RSpec.describe "GetGame", type: :request do
 
       response = response_body.dig("data", "getGame")
 
-      pp response
       expect(response["id"]).to eq(game_1.id.to_s)
       expect(response["rows"]).to eq(game_1.rows)
     end
