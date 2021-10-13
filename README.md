@@ -196,6 +196,11 @@ export API_URL=https://radiant-castle-13560.herokuapp.com/graphql
 export API_URL=http://localhost:3001/graphql
 ```
 
+**NOTE**: For more examples of GraphQL queries and mutations, see existing specs:
+
+- [Mutations specs](spec/graphql/mutations)
+- [Queries specs](spec/graphql/queries)
+
 ### Queries
 
 #### GetGames query
