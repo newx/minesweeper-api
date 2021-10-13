@@ -79,15 +79,15 @@ Done. You can now make requests to the GraphQL server. See [GrahpQL API](#grahpq
 
 ### Local
 
-- [app URL](http://localhost:3001)
-- [GraphiQL console url](http://localhost:3001/graphiql)
-- [GraphQL API docs](http://localhost:3001/docs)
+- **App URL**: http://localhost:3001
+- **GraphiQL console url**: http://localhost:3001/graphiql
+- **GraphQL API docs**: http://localhost:3001/docs
 
 ### Heroku
 
-- [Heroku app URL](https://radiant-castle-13560.herokuapp.com/)
-- [GraphiQL console url](https://radiant-castle-13560.herokuapp.com/graphiql)
-- [GraphQL API docs](https://radiant-castle-13560.herokuapp.com/docs)
+- **Heroku app URL**: https://radiant-castle-13560.herokuapp.com/
+- **GraphiQL console url**: https://radiant-castle-13560.herokuapp.com/graphiql
+- **GraphQL API docs**: https://radiant-castle-13560.herokuapp.com/docs
   
 ## REST API
 
