@@ -1,6 +1,6 @@
-# Minesweeper API
+# Minesweeper GraphQL API
 
-- [Minesweeper API](#minesweeper-api)
+- [Minesweeper GraphQL API](#minesweeper-graphql-api)
   - [Install and Setup](#install-and-setup)
   - [Environments](#environments)
     - [Local](#local)
@@ -28,7 +28,7 @@
 1. Clone this repo
 
 ```sh
-git@github.com:newx/minesweeper.git
+git@github.com:newx/minesweeper-api.git
 ```
 
 2. Install ruby 2.7.0
