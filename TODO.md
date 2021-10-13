@@ -35,15 +35,15 @@
   - [x] create Game model (with persistence)
   - [x] Ability to select the game parameters: number of rows, columns, and mines
   - [ ] Detect when game is over
-    - [ ] set game status when game is over
+    - [x] set game status when game is over
   - [x] Detect if the game was won
     - [ ] when flags matches all mines
     - [ ] To win the game, players must uncover all non-mine cells, at which point, the timer is stopped
   - [x] Ability to start a new game and preserve/resume the old ones
   - [x] serialize board state data
   - [ ] Time tracking
-  - [ ] Ability to support multiple users/accounts
-  - [ ] adds a method Game#play in which you can the board is changed and saved inside a yield block
+  - [x] Ability to support multiple users/accounts
+  - [x] adds a method Game#play in which you can the board is changed and saved inside a yield block
 
 ## Authentication API
 

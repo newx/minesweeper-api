@@ -5,6 +5,44 @@ RSpec.describe Game, type: :model do
 
   include_context "game_with_fixed_board"
 
+  describe "callbacks" do
+    describe "before_create :update_settings_based_on_game_level" do
+      context "when game level is beginner" do
+        it "sets the rows to 10" do
+          expect(subject.rows).to eq(10)
+        end
+
+        it "sets number of mines to 10" do
+          expect(subject.mines).to eq(10)
+        end
+      end
+
+      context "when game level is intermediate" do
+        subject { create(:game, user: user, level: "intermediate") }
+
+        it "sets number of rows to 16" do
+          expect(subject.rows).to eq(16)
+        end
+
+        it "sets number of mines to 40" do
+          expect(subject.mines).to eq(40)
+        end
+      end
+
+      context "when game level is expert" do
+        subject { create(:game, user: user, level: "expert") }
+
+        it "sets the number of rows to 16" do
+          expect(subject.rows).to eq(24)
+        end
+
+        it "sets the number of mines to 99" do
+          expect(subject.mines).to eq(99)
+        end
+      end
+    end
+  end
+
   describe "#board" do
     it "should return a board" do
       expect(subject.board).to be_a Board

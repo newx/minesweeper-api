@@ -4,8 +4,16 @@ class Game < ApplicationRecord
   attr_accessor :board
 
   after_initialize :init_board
+  before_create :update_settings_based_on_game_level
 
   enum status: { started: 0, idle: 1, paused: 2, game_over: 3 }
+  enum level: { beginner: 0, intermediate: 1, expert: 2 }
+
+  LEVELS = {
+    beginner: { rows: 10, cols: 10, mines: 10 },
+    intermediate: { rows: 16, cols: 16, mines: 40 },
+    expert: { rows: 24, cols: 24, mines: 99 }
+  }.freeze
 
   def self.by_user(user)
     where(user: user)
@@ -37,6 +45,8 @@ class Game < ApplicationRecord
     return_value
   end
 
+  private
+
   # Private: Initialize a new board or load an existing one via game.board_state data.
   def init_board
     @board =
@@ -49,5 +59,13 @@ class Game < ApplicationRecord
           b.setup!
         end
       end
+  end
+
+  def update_settings_based_on_game_level
+    level_settings = LEVELS[level.to_sym]
+
+    self.rows = level_settings[:rows]
+    self.cols = level_settings[:cols]
+    self.mines = level_settings[:mines]
   end
 end
