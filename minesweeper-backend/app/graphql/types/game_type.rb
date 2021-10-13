@@ -8,7 +8,7 @@ module Types
     field :cols, Integer, null: true
     field :mines, Integer, null: true
     field :status, Types::GameStatusType, null: true
-    field :time_elapsed, Integer, null: true
+    field :time_elapsed_secs, Integer, null: true
     field :board_state, GraphQL::Types::JSON, null: true
     field :created_at, GraphQL::Types::ISO8601DateTime, null: false
     field :updated_at, GraphQL::Types::ISO8601DateTime, null: false

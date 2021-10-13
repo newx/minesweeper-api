@@ -107,4 +107,13 @@ RSpec.describe Game, type: :model do
       expect(subject.won?).to be_truthy
     end
   end
+
+  describe "#time_elapsed_secs" do
+    it "should return the time elapsed since the game started" do
+      travel_to(subject.created_at + 5.minutes) do
+        subject.update!(updated_at: Time.zone.now)
+        expect(subject.time_elapsed_secs > 4.minutes).to be_truthy
+      end
+    end
+  end
 end

@@ -45,6 +45,14 @@ class Game < ApplicationRecord
     return_value
   end
 
+  # Public: Returns the time elapsed since the game started and the last time it was
+  # saved or the current time.
+  # NOTE: This is a simple time elapsed calculation and is not accurate. A better
+  # approach would take into account only the time a game is actually being played.
+  def time_elapsed_secs
+    ((updated_at || Time.zone.now) - created_at).to_i.seconds
+  end
+
   private
 
   # Private: Initialize a new board or load an existing one via game.board_state data.
