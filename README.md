@@ -13,9 +13,10 @@
       - [Sign Out](#sign-out)
   - [GrahpQL API](#grahpql-api)
     - [Queries](#queries)
-      - [New Game](#new-game)
       - [GetGames query](#getgames-query)
       - [GetGame info](#getgame-info)
+    - [Mutations](#mutations)
+      - [New Game](#new-game)
       - [Reveal a board cell](#reveal-a-board-cell)
       - [Flag a board cell](#flag-a-board-cell)
       - [Remove a flag](#remove-a-flag)
@@ -23,6 +24,56 @@
       - [Resume game](#resume-game)
 
 ## Install and Setup
+
+1. Clone this repo
+
+```sh
+git@github.com:newx/minesweeper.git
+```
+
+2. Install ruby 2.7.0
+3. Run bundle install
+
+```sh
+cd minesweeper-api
+bundle install
+```
+
+4. Update database configuration on `config/database.yml`
+5. Create databases
+
+```sh
+rails db:create
+```
+
+6. Run migrations
+
+```sh
+rails db:migrate
+```
+
+7. Run db seeds
+
+```sh
+rails db:seed
+```
+
+8. Start rails server
+
+```sh
+bundle exec rails server -p 3001
+```
+
+9. Get a user JWT token. See [Sign In](#sign-in) REST API endpoint.
+10. Copy JWT token from the above request response
+11. Export JWT token to your local environment.
+
+
+```sh
+export TOKEN="your token here"
+```
+
+Done. You can now make requests to the GraphQL server. See [GrahpQL API](#grahpql-api)
 
 ## Environments
 
@@ -103,25 +154,6 @@ export API_URL=http://localhost:3001/graphql
 
 ### Queries
 
-#### New Game
-
-```sh
-curl "${API_URL}" \
-  -X POST \
-  -H "content-type: application/json" \
-  -H "Authorization: Bearer ${TOKEN}" \
-  --data '{
-    "variables": { "input": { "level": "beginner" } },
-    "query": "mutation ($input: NewGameInput!) { newGame(input: $input) { game { id rows cols status won board { width height minesCount grid { rows { cells { row col mine revealed flagged neighborsCount } } } } } } }"
-  }'
-```
-
-Response:
-
-```json
-{"data":{"newGame":{"game":{"id":"4","rows":10,"cols":10,"status":"started","won":false,"board":{"width":10,"height":10,"minesCount":10,"grid":{"rows":[{"cells":[{"row":0,"col":0,"mine":false,"revealed":false,"flagged":false,"neighborsCount":0},{"row":0,"col":1,"mine":false,"revealed":false,"flagged":false,"neighborsCount":0},{"row":0,"col":2,"mine":false,"revealed":false,"flagged":false,"neighborsCount":0},{"row":0,"col":3,"mine":false,"revealed":false,"flagged":false,"neighborsCount":0},{"row":0,"col":4,"mine":false,"revealed":false,"flagged":false,"neighborsCount":0},{"row":0,"col":5,"mine":false,"revealed":false,"flagged":false,"neighborsCount":0}...
-```
-
 #### GetGames query
 
 ```sh
@@ -157,6 +189,26 @@ Response:
 
 ```json
 {"data":{"getGame":{"id":"3","rows":10,"cols":10,"status":"started","won":false,"board":{"width":10,"height":10,"minesCount":10,"grid":{"rows":[{"cells":[{"row":0,"col":0,"mine":false,"revealed":false,"flagged":false,"neighborsCount":1},{"row":0,"col":1,"mine":false,"revealed":false,"flagged":false,"neighborsCount":2},{"row":0,"col":2,"mine":false,"revealed":false,"flagged":false,"neighborsCount":1},{"row":0,"col":3,"mine":false,"revealed":false,"flagged":false,"neighborsCount":1} ...
+```
+
+### Mutations
+#### New Game
+
+```sh
+curl "${API_URL}" \
+  -X POST \
+  -H "content-type: application/json" \
+  -H "Authorization: Bearer ${TOKEN}" \
+  --data '{
+    "variables": { "input": { "level": "beginner" } },
+    "query": "mutation ($input: NewGameInput!) { newGame(input: $input) { game { id rows cols status won board { width height minesCount grid { rows { cells { row col mine revealed flagged neighborsCount } } } } } } }"
+  }'
+```
+
+Response:
+
+```json
+{"data":{"newGame":{"game":{"id":"4","rows":10,"cols":10,"status":"started","won":false,"board":{"width":10,"height":10,"minesCount":10,"grid":{"rows":[{"cells":[{"row":0,"col":0,"mine":false,"revealed":false,"flagged":false,"neighborsCount":0},{"row":0,"col":1,"mine":false,"revealed":false,"flagged":false,"neighborsCount":0},{"row":0,"col":2,"mine":false,"revealed":false,"flagged":false,"neighborsCount":0},{"row":0,"col":3,"mine":false,"revealed":false,"flagged":false,"neighborsCount":0},{"row":0,"col":4,"mine":false,"revealed":false,"flagged":false,"neighborsCount":0},{"row":0,"col":5,"mine":false,"revealed":false,"flagged":false,"neighborsCount":0}...
 ```
 
 #### Reveal a board cell

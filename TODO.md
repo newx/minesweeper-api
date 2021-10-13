@@ -2,7 +2,7 @@
 
 - [TODO](#todo)
   - [General](#general)
-  - [Bonus](#bonus)
+  - [Extras](#extras)
   - [Board](#board)
   - [Cell](#cell)
   - [Game](#game)
@@ -20,14 +20,14 @@
 - [x] setup rubocop
 - [x] create User model
 - [x] install/setup graphql-doc and generate GraphQL doc
-- [ ] update README
+- [x] update README
   - [ ] add docs about each component
 - [x] change default rails port to 3001
 
-## Bonus
+## Extras
 
-- [ ] deploy backend to Heroku
-- [ ] api client on a different language (JS maybe?)
+- [x] deploy backend to Heroku
+- [ ] api client on a different language
 - [ ] update game status to idle when it's idle for x minutes (via sidekiq worker)
 - [ ] Frontend in ReactJS or Angular
 
