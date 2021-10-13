@@ -49,8 +49,6 @@ fixed_board = Board.new
 fixed_board.setup!
 fixed_board.create_fixed_mines!(fixed_mines)
 fixed_board.reveal(0, 0)
-fixed_board.reveal(0, 1)
-fixed_board.reveal(0, 2)
 
 game_2 = Game.create!(
   user: user,

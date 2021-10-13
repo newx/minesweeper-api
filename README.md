@@ -5,7 +5,7 @@
   - [REST API](#rest-api)
     - [Users](#users)
       - [Create a new user](#create-a-new-user)
-      - [Login](#login)
+      - [Sign In](#sign-in)
       - [Access user data via JWT authentication](#access-user-data-via-jwt-authentication)
       - [Sign Out](#sign-out)
   - [GrahpQL API](#grahpql-api)
@@ -13,6 +13,8 @@
 ## Install and Setup
 
 ## REST API
+
+This API is used to sign up, sign in and sign out users.
 
 ### Users
 
@@ -22,7 +24,9 @@
 curl -XPOST -H "Content-Type: application/json" -d '{ "user": { "email": "test@example.com", "password": "12345678" } }' http://localhost:3001/users
 ```
 
-#### Login
+#### Sign In
+
+This will return a user JWT token for authentication on the GraphQL API.
 
 ```sh
 curl -XPOST -i -H "Content-Type: application/json" -d '{ "user": { "email": "newx@example.com", "password": "123456" } }' http://localhost:3001/users/sign_in
@@ -51,4 +55,5 @@ curl -XDELETE -H "Authorization: Bearer eyJhbGciOiJIUzI1NiJ9.eyJzdWIiOiIxIiwic2N
 ### GraphiQL console
 
 - [GraphiQL console url](http://localhost:3001/graphiql)
+- [GraphQL API docs](http://localhost:3001/docs)
 
