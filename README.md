@@ -3,6 +3,7 @@
 - [Minesweeper GraphQL API](#minesweeper-graphql-api)
   - [Minesweeper Game](#minesweeper-game)
   - [Install and Setup](#install-and-setup)
+    - [Run specs](#run-specs)
   - [Tools used](#tools-used)
     - [rails 6.1](#rails-61)
     - [graphql-ruby](#graphql-ruby)
@@ -83,6 +84,11 @@ bundle exec rails server -p 3001
 10. Copy JWT token from the above request response
 11. Export JWT token to your local environment.
 
+### Run specs
+
+```sh
+bundle exec rspec
+```
 
 ```sh
 export TOKEN="your token here"
