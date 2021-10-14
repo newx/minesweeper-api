@@ -62,7 +62,7 @@ Minesweeper is a single-player puzzle video game. The objective of the game is t
 - Reveal a board cell.
 - Flag a board cell.
 - Unflag a board cell.
-- Game persistense with current board state (See `game.board_state`).
+- Game persistence with current board state (See `game.board_state`).
 - When a board cell with no adjacent/neighbor mines is revealed, all adjacent cells are revealed recursively.
 - Simplistic game time tracking (Based on game.created_at and last updated_at or winned_at).
 - Game levels (beginner, intermediate, expert) that are used on game creation and defines the number of rows, columns and mines on the board.
