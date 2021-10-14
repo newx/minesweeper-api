@@ -2,6 +2,9 @@
 
 - [Minesweeper GraphQL API](#minesweeper-graphql-api)
   - [Minesweeper Game](#minesweeper-game)
+  - [Features](#features)
+      - [REST API](#rest-api)
+      - [GraphQL API](#graphql-api)
   - [TODO](#todo)
   - [Install and Setup](#install-and-setup)
     - [Run specs](#run-specs)
@@ -17,7 +20,7 @@
   - [Environments](#environments)
     - [Local](#local)
     - [Heroku](#heroku)
-  - [REST API](#rest-api)
+  - [REST API](#rest-api-1)
     - [Users](#users)
       - [Create a new user](#create-a-new-user)
       - [Sign In](#sign-in)
@@ -40,6 +43,32 @@
 Minesweeper is a single-player puzzle video game. The objective of the game is to clear a rectangular board containing hidden "mines" or bombs without detonating any of them, with help from clues about the number of neighboring mines in each field. The game originates from the 1960s, and it has been written for many computing platforms in use today. It has many variations and offshoots.
 
 [https://en.wikipedia.org/wiki/Minesweeper_(video_game)](https://en.wikipedia.org/wiki/Minesweeper_(video_game))
+
+
+## Features
+
+- Deployed to Heroku.
+- GraphQL docs available at /docs.
+#### REST API
+
+- REST API for sign up, sign in, sign out.
+- Provides the user with a JWT for the GraphQL authentication after a successful sign-in.
+
+#### GraphQL API
+
+- Create, pause and resume a game.
+- List user's games.
+- Get a single game info.
+- Reveal a board cell.
+- Flag a board cell.
+- Unflag a board cell.
+- Game persistense with current board state (See `game.board_state`).
+- When a board cell with no adjacent/neighbor mines is revealed, all adjacent cells are revealed recursively.
+- Simplistic game time tracking (Based on game.created_at and last updated_at or winned_at).
+- Game levels (beginner, intermediate, expert) that are used on game creation and defines the number of rows, columns and mines on the board.
+- Detects when the game is over. (When a mine is revealed).
+- Detects when a user wins the game. (When all non-mines cells are revealed).
+- Supports multiple users.
 
 ## TODO
 
