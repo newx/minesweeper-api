@@ -4,6 +4,7 @@
   - [Minesweeper Game](#minesweeper-game)
   - [Install and Setup](#install-and-setup)
     - [Run specs](#run-specs)
+    - [Heroku setup](#heroku-setup)
   - [Tools used](#tools-used)
     - [rails 6.1](#rails-61)
     - [graphql-ruby](#graphql-ruby)
@@ -89,6 +90,11 @@ bundle exec rails server -p 3001
 ```sh
 bundle exec rspec
 ```
+
+### Heroku setup
+
+- [Install and setup Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli#download-and-install)
+- [Getting Started on Heroku with Rails 6.x](https://devcenter.heroku.com/articles/getting-started-with-rails6#local-setup)
 
 ```sh
 export TOKEN="your token here"
