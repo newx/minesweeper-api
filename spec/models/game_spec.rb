@@ -74,7 +74,7 @@ RSpec.describe Game, type: :model do
   end
 
   describe "#play" do
-    include_context "game_with_fixed_board"
+    subject { game_with_fixed_board }
 
     it "should return false if the game is not won" do
       expect {
