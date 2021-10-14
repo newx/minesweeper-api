@@ -119,6 +119,12 @@ bundle exec rails server -p 3001
 10. Copy JWT token from the above request response
 11. Export JWT token to your local environment.
 
+```sh
+export TOKEN="your token here"
+```
+
+Done! You can now make requests to the GraphQL server. See [GrahpQL API](#grahpql-api)
+
 ### Run specs
 
 ```sh
@@ -129,12 +135,6 @@ bundle exec rspec
 
 - [Install and setup Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli#download-and-install)
 - [Getting Started on Heroku with Rails 6.x](https://devcenter.heroku.com/articles/getting-started-with-rails6#local-setup)
-
-```sh
-export TOKEN="your token here"
-```
-
-Done. You can now make requests to the GraphQL server. See [GrahpQL API](#grahpql-api)
 
 ## Tools used
 
