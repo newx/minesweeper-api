@@ -5,6 +5,10 @@ RSpec.describe Game, type: :model do
 
   include_context "game_with_fixed_board"
 
+  describe "associations" do
+    it { should belong_to(:user) }
+  end
+
   describe "callbacks" do
     describe "before_create :update_settings_based_on_game_level" do
       context "when game level is beginner" do

@@ -243,6 +243,8 @@ GEM
     sass-listen (4.0.0)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
+    shoulda-matchers (5.0.0)
+      activesupport (>= 5.2.0)
     spring (3.0.0)
     sprockets (4.0.2)
       concurrent-ruby (~> 1.0)
@@ -294,6 +296,7 @@ DEPENDENCIES
   rspec-rails
   rubocop
   rubocop-rails
+  shoulda-matchers (~> 5.0)
   spring
   terminal-table
   tzinfo-data
