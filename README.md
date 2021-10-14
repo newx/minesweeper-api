@@ -2,6 +2,7 @@
 
 - [Minesweeper GraphQL API](#minesweeper-graphql-api)
   - [Minesweeper Game](#minesweeper-game)
+  - [TODO](#todo)
   - [Install and Setup](#install-and-setup)
     - [Run specs](#run-specs)
     - [Heroku setup](#heroku-setup)
@@ -39,6 +40,10 @@
 Minesweeper is a single-player puzzle video game. The objective of the game is to clear a rectangular board containing hidden "mines" or bombs without detonating any of them, with help from clues about the number of neighboring mines in each field. The game originates from the 1960s, and it has been written for many computing platforms in use today. It has many variations and offshoots.
 
 [https://en.wikipedia.org/wiki/Minesweeper_(video_game)](https://en.wikipedia.org/wiki/Minesweeper_(video_game))
+
+## TODO
+
+- [TODO doc](./TODO.md)
 
 ## Install and Setup
 
